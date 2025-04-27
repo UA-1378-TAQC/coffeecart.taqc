@@ -29,16 +29,33 @@ public class ShortItemComponent extends BaseComponent{
         return spanName.getText();
     }
 
+    /**
+     * Returns the item's count as an integer by extracting and parsing the text from the count element.
+     *
+     * @return the numeric count of the item
+     */
     public int getCount(){
         return Integer.parseInt(spanCount.getText().replace(" x ",""));
     }
 
+    /**
+     * Increments the item count by clicking the plus button.
+     *
+     * @return this component instance for method chaining
+     */
     public ShortItemComponent clickPlus(){
         waitUntilElementClickable(buttonPlus);
         buttonPlus.click();
         return this;
     }
 
+    /**
+     * Clicks the minus button to decrease the item count.
+     *
+     * Waits until the minus button is clickable before performing the action.
+     *
+     * @return this component instance for method chaining
+     */
     public ShortItemComponent clickMinus(){
         waitUntilElementClickable(buttonMinus);
         buttonMinus.click();
