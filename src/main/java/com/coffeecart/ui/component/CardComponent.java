@@ -1,5 +1,6 @@
 package com.coffeecart.ui.component;
 
+import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -44,9 +45,8 @@ public class CardComponent extends BaseComponent {
 
 
     @Step("Click on cup")
-    public void clickCup() {
-        cupRootElement.click();
-
+    public MenuPage clickCup() {
+        return cupComponent.clickOnCupBody();
     }
 }
 
