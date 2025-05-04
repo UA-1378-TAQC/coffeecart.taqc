@@ -1,9 +1,11 @@
 package com.coffeecart.ui.modal;
 
 import com.coffeecart.ui.page.MenuPage;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 
 public class AddModal extends BaseModal {
@@ -50,6 +52,21 @@ public class AddModal extends BaseModal {
 
     public boolean isModalDisplayed() {
         return modalTitle.isDisplayed();
+    }
+
+    public String getNoButtonTextColor() {
+        return Color.fromString(noButton.getCssValue("color")).asHex();
+    }
+
+    public String getNoButtonBorderColor() {
+        return Color.fromString(noButton.getCssValue("border-top-color")).asHex();
+    }
+
+    @Step("Hover over the 'No' button")
+    public AddModal hoverNoButton(){
+        waitUntilElementVisible(noButton);
+        actions.moveToElement(noButton).perform();
+        return this;
     }
 }
 
