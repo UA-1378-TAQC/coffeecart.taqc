@@ -25,11 +25,6 @@ public class TC12 extends BaseTestRunner {
         driver.get(testValueProvider.getBaseUIUrl());
     }
 
-    @BeforeMethod(onlyForGroups = "refresh")
-    public void refreshPageForGroup() {
-        driver.navigate().refresh();
-    }
-
     @AfterMethod
     public void resetDriver() {
         driver.get(testValueProvider.getBaseUIUrl());
@@ -63,7 +58,7 @@ public class TC12 extends BaseTestRunner {
                 "Cart should remain empty");
     }
 
-    @Test(groups = "refresh")
+    @Test
     @Description("TC13: Add‑to‑Cart modal open ather refresh page")
     public void addModalOpensAfterPageRefresh() {
 
