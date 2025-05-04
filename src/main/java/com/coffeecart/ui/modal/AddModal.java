@@ -1,7 +1,6 @@
 package com.coffeecart.ui.modal;
 
 import com.coffeecart.ui.page.MenuPage;
-import com.coffeecart.ui.utils.Waiter;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -49,7 +48,7 @@ public class AddModal extends BaseModal {
 
     public MenuPage clickNo() {
         clickDynamicElement(noButton);
-        Waiter.waitInvisibility(driver, rootElement, Duration.ofSeconds(2));
+        waitUntilElementInvisible(rootElement, Duration.ofSeconds(2));
         return new MenuPage(driver);
     }
 
@@ -58,10 +57,7 @@ public class AddModal extends BaseModal {
     }
 
     public AddModal waitNoButtonBorderChanged(String beforeHex, Duration timeout) {
-        Waiter.waitCssValueChanged(driver,
-                this::getNoButtonBorderColor,
-                beforeHex,
-                timeout);
+        waitCssValueChanged(this::getNoButtonBorderColor, beforeHex, timeout);
         return this;
     }
 
