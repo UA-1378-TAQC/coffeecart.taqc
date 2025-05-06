@@ -139,3 +139,4 @@ public class MenuPage extends BasePage {
         return value >= min && value <= max;
     }
 }
+

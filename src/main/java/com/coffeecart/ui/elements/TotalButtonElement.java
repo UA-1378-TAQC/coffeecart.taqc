@@ -16,11 +16,13 @@ public class TotalButtonElement extends BaseElement {
 
     @Getter
     @FindBy(xpath = "//ul[@class='cart-preview show']")
-    WebElement cardComponentElement;
+    WebElement cartComponentRoot;
 
     @Getter
     @FindBy(xpath = "//div[@class='modal']")
     WebElement modalElement;
+
+    CartComponent cartComponent;
 
     Actions actions;
 
@@ -42,8 +44,7 @@ public class TotalButtonElement extends BaseElement {
 
     public CartComponent hoverTotalButton(){
         actions.moveToElement(totalButton).perform();
-        updateElements();
-        waitUntilElementVisible(cardComponentElement);
-        return new CartComponent(driver, cardComponentElement);
+        waitUntilElementVisible(cartComponentRoot);
+        return new CartComponent(driver, cartComponentRoot);
     }
 }
