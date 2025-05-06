@@ -11,7 +11,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.Optional;
 
-public class IncreaseItemsNumberInCart extends BaseTestRunner {
+public class IncreaseItemsNumberInCartTest extends BaseTestRunner {
     @Test
     public void testIncreaseItemsNumberInCart() {
         MenuPage menuPage = new MenuPage(driver);
