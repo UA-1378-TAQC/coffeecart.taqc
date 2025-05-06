@@ -4,15 +4,12 @@ import com.coffeecart.data.DrinkEnum;
 import com.coffeecart.ui.component.ShortItemComponent;
 import com.coffeecart.ui.page.MenuPage;
 import com.coffeecart.ui.testrunners.BaseTestRunner;
-import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.*;
 
-@Slf4j
 public class DiscardLuckyPropositionTest extends BaseTestRunner {
-
     @Test
     public void testLuckyPropositionDiscard() {
         MenuPage menuPage = new MenuPage(driver);
