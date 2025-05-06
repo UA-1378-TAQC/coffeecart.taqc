@@ -15,8 +15,12 @@ public class Drink {
     @Getter
     private String name;
 
-    public Drink(String name, DrinkIngredient... drinkIngredientList) {
+    @Getter
+    private final String chineseName;
+
+    public Drink(String name, String chineseName, DrinkIngredient... drinkIngredientList) {
         this.name = name;
+        this.chineseName = chineseName;
         drinkIngredients = new LinkedHashMap<>();
         for (DrinkIngredient d : drinkIngredientList) {
             drinkIngredients.put(d.getIngredient().getName(), d);

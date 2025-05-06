@@ -89,6 +89,10 @@ public abstract class Base {
         }
     }
 
+    public void updateElements(){
+        PageFactory.initElements(this.driver, this);
+    }
+
     public void sleep(long millisSeconds) {
         try {
             Thread.sleep(millisSeconds);

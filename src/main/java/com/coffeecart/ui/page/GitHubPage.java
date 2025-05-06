@@ -27,4 +27,15 @@ public class GitHubPage extends BasePage {
         return this;
     }
 
+    @Step("Navigate to the Cart Page")
+    public CartPage goToCartPage() {
+        return header.navigateToCart();
+    }
+
+    @Step("Navigate to the Menu Page")
+    public MenuPage goToMenuPage() {
+        return header.navigateToMenu();
+    }
+
+
 }

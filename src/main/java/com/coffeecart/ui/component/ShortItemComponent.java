@@ -4,9 +4,10 @@ import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 
 public class ShortItemComponent extends BaseComponent{
-
     @Getter
     @FindBy(xpath = "./div[1]/span[1]")
     WebElement spanName;
@@ -15,14 +16,15 @@ public class ShortItemComponent extends BaseComponent{
     WebElement spanCount;
 
     @Getter
-    @FindBy(xpath = "./div[2]/button[1]")
+    @FindBy(xpath = "./div[2]/button[2]")
     WebElement buttonMinus;
     @Getter
-    @FindBy(xpath = "./div[2]/button[2]")
+    @FindBy(xpath = "./div[2]/button[1]")
     WebElement buttonPlus;
 
     public ShortItemComponent(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
+        PageFactory.initElements(new DefaultElementLocatorFactory(rootElement), this);
     }
 
     public String getName(){
@@ -30,7 +32,7 @@ public class ShortItemComponent extends BaseComponent{
     }
 
     public int getCount(){
-        return Integer.parseInt(spanCount.getText().replace(" x ",""));
+        return Integer.parseInt(spanCount.getText().replaceAll("\\D",""));
     }
 
     public ShortItemComponent clickPlus(){

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class CartComponent extends BaseComponent {
 
     @Getter
-    @FindBy(xpath = "//div[@class='pay-container']")
+    @FindBy(xpath = ".//li")
     private List<WebElement> shortItemElements;
 
     public CartComponent(WebDriver driver, WebElement rootElement) {

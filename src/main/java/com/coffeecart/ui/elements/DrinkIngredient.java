@@ -19,5 +19,11 @@ public class DrinkIngredient {
         return ingredient.getName();
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
 
+    public Ingredients getIngredient() {
+        return ingredient;
+    }
 }
