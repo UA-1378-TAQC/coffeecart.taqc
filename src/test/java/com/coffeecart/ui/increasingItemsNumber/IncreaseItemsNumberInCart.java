@@ -1,17 +1,17 @@
 package com.coffeecart.ui.increasingItemsNumber;
 
 import com.coffeecart.data.DrinkEnum;
-import com.coffeecart.ui.BaseTest;
 import com.coffeecart.ui.component.FullItemComponent;
 import com.coffeecart.ui.component.HeaderComponent;
 import com.coffeecart.ui.page.CartPage;
 import com.coffeecart.ui.page.MenuPage;
+import com.coffeecart.ui.testrunners.BaseTestRunner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.Optional;
 
-public class IncreaseItemsNumberInCart extends BaseTest {
+public class IncreaseItemsNumberInCart extends BaseTestRunner {
     @Test
     public void testIncreaseItemsNumberInCart() {
         DrinkEnum espressoMacchiato = DrinkEnum.ESPRESSO_MACCHIATO;
