@@ -5,8 +5,9 @@ import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import com.coffeecart.ui.testrunners.BaseTestRunner;
 
-public class TestAddCupsToCart extends BaseTest {
+public class TestAddCupsToCart extends BaseTestRunner {
     @Test
     @Description("Verify adding multiple drinks updates cart counter.")
     @Feature("Cart Counter Update")
