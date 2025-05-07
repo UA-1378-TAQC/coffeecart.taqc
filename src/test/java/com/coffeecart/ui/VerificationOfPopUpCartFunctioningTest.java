@@ -33,7 +33,7 @@ public class VerificationOfPopUpCartFunctioningTest extends BaseTestRunner {
     @Story("Cart pop-up behavior when interacting with any drink from the menu")
     @Severity(SeverityLevel.NORMAL)
     @Owner("Khrystyna Martynova")
-    @Issue("3")
+    @Issue("14")
     @Link(name = "Coffee Cart", url = "https://coffee-cart.app/")
     @Description("Test verification of pop-up cart functioning (buttons +/-)")
     public void cartManipulationTest(DrinkEnum drinkEnum) {
