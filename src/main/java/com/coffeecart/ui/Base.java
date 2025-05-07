@@ -125,4 +125,13 @@ public abstract class Base {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
     }
 
+    @Step("Move to the element")
+    protected void moveToElement(WebElement element) {
+        waitUntilElementVisible(element);
+        try {
+            actions.moveToElement(element).perform();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to move to the element: " + element, e);
+        }
+    }
 }

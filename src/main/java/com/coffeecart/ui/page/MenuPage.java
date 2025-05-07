@@ -1,6 +1,7 @@
 package com.coffeecart.ui.page;
 
 import com.coffeecart.ui.component.CardComponent;
+import com.coffeecart.ui.component.CartComponent;
 import com.coffeecart.ui.component.LuckyDayComponent;
 import com.coffeecart.ui.data.Colors;
 import com.coffeecart.ui.elements.TotalButtonElement;
@@ -34,17 +35,25 @@ public class MenuPage extends BasePage {
 
     @Getter
     @FindBy(xpath = "//button[@class='pay']")
-    private WebElement totalButtonRoot;
+    private WebElement totalButton;
 
     @Getter
     @FindBy(xpath = "//*[@class=\"pay-container\"]")
     private WebElement payContainer;
+
+    @FindBy(xpath = "//ul[@class='cart-preview show']")
+    private WebElement cartPreview;
 
     public MenuPage(WebDriver driver) {
         super(driver);
         for (WebElement card : rootCards) {
             cards.add(new CardComponent(driver, card));
         }
+    }
+    @Step("Display and preview cart pop-up")
+    public CartComponent getCartPreview(WebElement totalButton) {
+        moveToElement(totalButton);
+        return new CartComponent(driver, cartPreview);
     }
 
     @Step("Click 'Total' button")
@@ -53,7 +62,7 @@ public class MenuPage extends BasePage {
     }
 
     public TotalButtonElement getButtonElement() {
-        return new TotalButtonElement(driver, totalButtonRoot);
+        return new TotalButtonElement(driver, totalButton);
     }
 
     public LuckyDayComponent getLuckyDayComponent() {
@@ -129,5 +138,6 @@ public class MenuPage extends BasePage {
         int max = Math.max(bound1, bound2);
         return value >= min && value <= max;
     }
+
 }
 
