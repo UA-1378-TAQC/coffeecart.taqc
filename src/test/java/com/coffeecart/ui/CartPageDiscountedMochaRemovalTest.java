@@ -59,7 +59,7 @@ public class CartPageDiscountedMochaRemovalTest extends BaseTestRunner {
         softAssert.assertFalse(cartPage.getTotalButton().isDisplayed(),
                 "Total button should not be displayed when cart is empty");
 
-//        softAssert.assertEquals(cartPage.getEmptyCartMessage().getText(), EMPTY_CART_MESSAGE, "Empty cart message should be '" + EMPTY_CART_MESSAGE + "' when all items are removed");
+        softAssert.assertEquals(cartPage.getEmptyCartMessage().getText(), EMPTY_CART_MESSAGE, "Empty cart message should be '" + EMPTY_CART_MESSAGE + "' when all items are removed");
 
         numberItemsInCart = cartPage.getHeader().getTotalNumberItemsFromCartLink();
         softAssert.assertEquals(numberItemsInCart, 0,
