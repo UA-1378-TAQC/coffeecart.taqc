@@ -26,7 +26,7 @@ public class TestTotalButtonOnMainAndCart extends BaseTestRunner {
         menuPage = menuPage.clickDrink(DrinkEnum.getName(DrinkEnum.ESPRESSO));
 
         TotalButtonElement totalButton = menuPage.getButtonElement();
-        totalButton.hoverTotalButton();
+        totalButton.hover();
 
         String hoverColor = totalButton.getTotalButton().getCssValue("color");
         softAssert.assertEquals(hoverColor, Colors.GOLDEN.getColor(),
@@ -44,7 +44,7 @@ public class TestTotalButtonOnMainAndCart extends BaseTestRunner {
         CartPage cartPage = menuPage.goToCartPage();
         TotalButtonElement cartTotalButton = cartPage.getTotalButton();
 
-        cartTotalButton.hoverTotalButton();
+        cartTotalButton.hover();
 
         String cartHoverColor = cartTotalButton.getTotalButton().getCssValue("color");
 
