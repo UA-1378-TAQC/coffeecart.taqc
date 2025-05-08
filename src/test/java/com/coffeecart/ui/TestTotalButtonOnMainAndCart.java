@@ -1,6 +1,7 @@
 package com.coffeecart.ui;
 
 import com.coffeecart.data.DrinkEnum;
+import com.coffeecart.ui.data.Colors;
 import com.coffeecart.ui.elements.TotalButtonElement;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import com.coffeecart.ui.testrunners.BaseTestRunner;
@@ -28,7 +29,7 @@ public class TestTotalButtonOnMainAndCart extends BaseTestRunner {
         totalButton.hoverTotalButton();
 
         String hoverColor = totalButton.getTotalButton().getCssValue("color");
-        softAssert.assertEquals(hoverColor, "rgba(218, 165, 32, 1)",
+        softAssert.assertEquals(hoverColor, Colors.GOLDEN.getColor(),
                 "Text color should change to RGB(218, 165, 32) on hover");
 
         softAssert.assertTrue(totalButton.getCartComponentRoot().isDisplayed(),
@@ -43,12 +44,11 @@ public class TestTotalButtonOnMainAndCart extends BaseTestRunner {
         CartPage cartPage = menuPage.goToCartPage();
         TotalButtonElement cartTotalButton = cartPage.getTotalButton();
 
-        Actions actions = new Actions(driver);
-        actions.moveToElement(cartTotalButton.getTotalButton()).perform();
+        cartTotalButton.hoverTotalButton();
 
         String cartHoverColor = cartTotalButton.getTotalButton().getCssValue("color");
 
-        softAssert.assertEquals(cartHoverColor, "rgba(218, 165, 32, 1)",
+        softAssert.assertEquals(cartHoverColor, Colors.GOLDEN.getColor(),
                 "Text color should change to RGB(218, 165, 32) on hover in cart page");
 
 
