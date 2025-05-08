@@ -5,6 +5,7 @@ import com.coffeecart.ui.elements.TotalButtonElement;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import io.qameta.allure.Step;
 import lombok.Getter;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -99,11 +100,21 @@ public class CartPage extends BasePage {
 
     @Step("Navigate to the Menu Page")
     public MenuPage goToMenuPage() {
-        return  header.navigateToMenu();
+        return header.navigateToMenu();
     }
 
     @Step("Navigate to the GitHub Page")
     public GitHubPage goToGitHubPage() {
-        return  header.navigateToGitHub();
+        return header.navigateToGitHub();
+    }
+
+    public boolean emptyCartMessageIsDisplayed() {
+        try {
+            return emptyCartMessage.isDisplayed();
+        } catch (
+                NoSuchElementException e) {
+            return false;
+
+        }
     }
 }

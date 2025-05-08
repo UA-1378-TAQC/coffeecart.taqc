@@ -3,6 +3,7 @@ package com.coffeecart.ui.elements;
 import com.coffeecart.ui.component.CartComponent;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import lombok.Getter;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;

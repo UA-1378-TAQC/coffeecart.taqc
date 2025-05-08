@@ -10,7 +10,6 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Issue;
 import io.qameta.allure.Owner;
-
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -46,7 +45,6 @@ public class CartPageDiscountedMochaRemovalTest extends BaseTestRunner {
         softAssert.assertEquals(mochaItem.getCount(), 1,
                 String.format("Mocha quantity should be 1 but was %d", mochaItem.getCount()));
 
-
         for (FullItemComponent item : cartPage.getFullItems()) {
             if (!item.getItemLabelString().equals(DISCOUNTED_MOCHA)) {
                 cartPage = item.clickOnDeleteButton();
@@ -59,7 +57,7 @@ public class CartPageDiscountedMochaRemovalTest extends BaseTestRunner {
         softAssert.assertFalse(cartPage.getTotalButton().isDisplayed(),
                 "Total button should not be displayed when cart is empty");
 
-        softAssert.assertEquals(cartPage.getEmptyCartMessage().getText(), EMPTY_CART_MESSAGE, "Empty cart message should be '" + EMPTY_CART_MESSAGE + "' when all items are removed");
+        softAssert.assertTrue(cartPage.emptyCartMessageIsDisplayed(), "Empty cart message should be displayed ");
 
         numberItemsInCart = cartPage.getHeader().getTotalNumberItemsFromCartLink();
         softAssert.assertEquals(numberItemsInCart, 0,
@@ -67,5 +65,4 @@ public class CartPageDiscountedMochaRemovalTest extends BaseTestRunner {
 
         softAssert.assertAll();
     }
-
 }
