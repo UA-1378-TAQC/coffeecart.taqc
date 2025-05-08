@@ -1,6 +1,7 @@
 package com.coffeecart.ui;
 
 import com.coffeecart.data.DrinkEnum;
+import com.coffeecart.ui.component.CartComponent;
 import com.coffeecart.ui.component.FullItemComponent;
 import com.coffeecart.ui.component.ShortItemComponent;
 import com.coffeecart.ui.page.CartPage;
@@ -11,22 +12,24 @@ import org.testng.asserts.SoftAssert;
 
 public class TestSynchronizationBetweenCarts extends BaseTestRunner {
     int expectedCount = 1;
-    String expectedTotalPrice = "$18.00";
-    String expectedDoubleTotalPrice = "$36.00";
+    String expectedTotalPrice = "Total: $18.00";
+    String expectedDoubleTotalPrice = "Total: $36.00";
+    String drinkName = DrinkEnum.FLAT_WHITE.getRecipe().getName();
 
     @Test
     public void testSynchronizationBetweenCarts() {
         SoftAssert softAssert = new SoftAssert();
         MenuPage menuPage = new MenuPage(driver);
-        ShortItemComponent flatWhiteShortItem = menuPage
-                .clickDrink(DrinkEnum.FLAT_WHITE.name())
+        CartComponent cartComponent = menuPage
+                .clickDrink(drinkName)
                 .getButtonElement()
-                .hoverTotalButton()
+                .hoverTotalButton();
+        ShortItemComponent flatWhiteShortItem = cartComponent
                 .getShortItems()
                 .getFirst();
         String nameOfItemInPopUpCart = flatWhiteShortItem.getName();
         int countOfItemImPopUpCart = flatWhiteShortItem.getCount();
-        softAssert.assertEquals(nameOfItemInPopUpCart, DrinkEnum.FLAT_WHITE.name());
+        softAssert.assertEquals(nameOfItemInPopUpCart, drinkName);
         softAssert.assertEquals(countOfItemImPopUpCart, expectedCount);
 
         String actualTotalPriceInPopUpCart = menuPage
@@ -35,10 +38,10 @@ public class TestSynchronizationBetweenCarts extends BaseTestRunner {
                 .getText();
         softAssert.assertEquals(actualTotalPriceInPopUpCart, expectedTotalPrice);
 
-        CartPage cartPage = new CartPage(driver);
+        CartPage cartPage = menuPage.goToCartPage();
         FullItemComponent itemOnCartPage = cartPage
                 .getFullItems()
-                .getFirst();;
+                .getFirst();
         String nameOfItemOnCartPage = itemOnCartPage.getItemLabel().getText();
         int countOfItemOnCartPage = itemOnCartPage.getCount();
         softAssert.assertEquals(nameOfItemOnCartPage, nameOfItemInPopUpCart);
@@ -53,7 +56,7 @@ public class TestSynchronizationBetweenCarts extends BaseTestRunner {
         cartPage = itemOnCartPage
                 .clickOnAddButton(1);
         countOfItemOnCartPage = cartPage
-                .getFullItemByName(DrinkEnum.FLAT_WHITE.name())
+                .getFullItemByName(drinkName)
                 .getCount();
         softAssert.assertEquals(countOfItemOnCartPage, expectedCount+1);
 
@@ -79,13 +82,13 @@ public class TestSynchronizationBetweenCarts extends BaseTestRunner {
 
         nameOfItemInPopUpCart = flatWhiteShortItem.getName();
         countOfItemImPopUpCart = flatWhiteShortItem.getCount();
-        softAssert.assertEquals(nameOfItemInPopUpCart, DrinkEnum.FLAT_WHITE.name());
+        softAssert.assertEquals(nameOfItemInPopUpCart, drinkName);
         softAssert.assertEquals(countOfItemImPopUpCart, countOfItemOnCartPage);
 
         flatWhiteShortItem = flatWhiteShortItem.clickMinus();
         nameOfItemInPopUpCart = flatWhiteShortItem.getName();
         countOfItemImPopUpCart = flatWhiteShortItem.getCount();
-        softAssert.assertEquals(nameOfItemInPopUpCart, DrinkEnum.FLAT_WHITE.name());
+        softAssert.assertEquals(nameOfItemInPopUpCart, drinkName);
         softAssert.assertEquals(countOfItemImPopUpCart, expectedCount);
 
         actualTotalPriceInPopUpCart = menuPage
@@ -94,10 +97,10 @@ public class TestSynchronizationBetweenCarts extends BaseTestRunner {
                 .getText();
         softAssert.assertEquals(actualTotalPriceInPopUpCart, expectedTotalPrice);
 
-        cartPage = new CartPage(driver);
+        cartPage = menuPage.goToCartPage();
         itemOnCartPage = cartPage
                 .getFullItems()
-                .getFirst();;
+                .getFirst();
         nameOfItemOnCartPage = itemOnCartPage.getItemLabel().getText();
         countOfItemOnCartPage = itemOnCartPage.getCount();
         softAssert.assertEquals(nameOfItemOnCartPage, nameOfItemInPopUpCart);
