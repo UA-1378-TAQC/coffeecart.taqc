@@ -15,7 +15,7 @@ public class TotalButtonElement extends BaseElement {
     WebElement totalButton;
 
     @Getter
-    @FindBy(xpath = "//ul[@class='cart-preview show']")
+    @FindBy(xpath = "//div[@class='pay-container']")
     WebElement cartComponentRoot;
 
     @Getter
