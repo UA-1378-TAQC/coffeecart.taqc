@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public abstract class BasePage extends Base {
     @Getter
-    protected HeaderComponent header;
+    public HeaderComponent header;
 
     @Getter
     @FindBy(xpath = "//div[@id='app']/ul")
