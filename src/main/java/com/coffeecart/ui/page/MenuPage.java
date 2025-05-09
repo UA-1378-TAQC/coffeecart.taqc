@@ -130,5 +130,8 @@ public class MenuPage extends BasePage {
         int max = Math.max(bound1, bound2);
         return value >= min && value <= max;
     }
+    public boolean isLuckyModalDisplayed() {
+        return getLuckyDayModalRoot().isDisplayed();
+    }
 }
 
