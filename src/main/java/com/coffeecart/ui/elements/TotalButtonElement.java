@@ -52,4 +52,7 @@ public class TotalButtonElement extends BaseElement {
     public boolean isDisplayed() {
         return totalButton.isDisplayed();
     }
+    public void hover() {
+        actions.moveToElement(totalButton).perform();
+    }
 }
