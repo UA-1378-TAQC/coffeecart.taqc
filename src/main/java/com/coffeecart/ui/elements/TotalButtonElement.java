@@ -55,4 +55,8 @@ public class TotalButtonElement extends BaseElement {
             return null;
         }
     }
+
+    public void hover() {
+        actions.moveToElement(totalButton).perform();
+    }
 }

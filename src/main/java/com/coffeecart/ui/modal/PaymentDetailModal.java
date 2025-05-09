@@ -40,7 +40,7 @@ public class PaymentDetailModal extends BaseModal {
     @FindBy(xpath = ".//section/button")
     private WebElement closeModalWindowButton;
     @Getter
-    @FindBy(xpath = "//*[@id=\"app\"]/div[2]/div[2]/div")
+    @FindBy(xpath = "//*[contains(@class, 'modal-content') and contains(@class, 'size')]")
     private WebElement paymentModal;
 
 
