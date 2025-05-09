@@ -1,6 +1,5 @@
 package com.coffeecart.ui.modal;
 
-import com.coffeecart.ui.data.Colors;
 import com.coffeecart.ui.page.CartPage;
 import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.Step;
@@ -88,11 +87,7 @@ public class PaymentDetailModal extends BaseModal {
     }
 
     public boolean isCheckboxMarked() {
-        String gtmValue = inputCheckbox.getAttribute("data-gtm-form-interact-field-id");
-        if ("2".equals(gtmValue)) {
-            return true;
-        }
-        return false;
+        return Boolean.parseBoolean(inputCheckbox.getDomProperty("checked"));
     }
 
     @Step("Mark the check box")
@@ -125,4 +120,13 @@ public class PaymentDetailModal extends BaseModal {
         getCloseModalWindowButton().click();
         return new CartPage(driver);
     }
+
+    public String getInputNameValue() {
+        return inputName.getDomProperty("value");
+    }
+
+    public String getInputEmailValue() {
+        return inputEmail.getDomProperty("value");
+    }
+
 }
