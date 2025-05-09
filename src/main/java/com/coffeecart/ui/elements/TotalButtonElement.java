@@ -33,30 +33,23 @@ public class TotalButtonElement extends BaseElement {
         actions = new Actions(driver);
     }
 
-    public PaymentDetailModal clickTotalButton(){
-        try {
-            totalButton.click();
-            return new PaymentDetailModal(driver,modalElement);
-        } catch (NoSuchElementException exception){
-            return null;
-        }
+    public PaymentDetailModal clickTotalButton() {
+        waitUntilElementClickable(totalButton);
+        totalButton.click();
+        return new PaymentDetailModal(driver, modalElement);
     }
 
     public double getMoneyCounter() {
-        return Double.parseDouble(totalButton.getText().replaceAll("[^\\d.]",""));
+        return Double.parseDouble(totalButton.getText().replaceAll("[^\\d.]", ""));
     }
 
-    public CartComponent hoverTotalButton(){
-        try {
-            actions.moveToElement(totalButton).perform();
-            cartComponentRoot.isDisplayed(); // trick to throw NoSuchElement
-            return new CartComponent(driver, cartComponentRoot);
-        } catch (NoSuchElementException exception){
-            return null;
-        }
-    }
-
-    public void hover() {
+    public CartComponent hoverTotalButton() {
         actions.moveToElement(totalButton).perform();
+        waitUntilElementVisible(cartComponentRoot);
+        return new CartComponent(driver, cartComponentRoot);
+    }
+
+    public boolean isDisplayed() {
+        return totalButton.isDisplayed();
     }
 }
