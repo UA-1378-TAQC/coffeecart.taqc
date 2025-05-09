@@ -2,13 +2,17 @@ package com.coffeecart.ui;
 
 import com.coffeecart.ui.component.HeaderComponent;
 import com.coffeecart.ui.page.MenuPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import com.coffeecart.ui.testrunners.BaseTestRunner;
 
-public class TestAddCupsToCart extends BaseTest {
+public class TestAddCupsToCart extends BaseTestRunner {
     @Test
+    @Description("Verify adding multiple drinks updates cart counter.")
+    @Feature("Cart Counter Update")
+    @Issue("2")
+    @Owner("Fylyk Viktoriia")
     public void testAddMultipleCupsToCart() {
         SoftAssert softAssert = new SoftAssert();
 
