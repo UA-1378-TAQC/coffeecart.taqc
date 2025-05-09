@@ -56,6 +56,15 @@ public class MenuPage extends BasePage {
         return new TotalButtonElement(driver, totalButtonRoot);
     }
 
+
+    public CardComponent getCardByName(String drinkName) {
+        return cards.stream()
+                .filter(c -> c.getName().equals(drinkName))
+                .findFirst()
+                .orElseThrow(() ->
+                        new IllegalStateException("Card with name " + drinkName + " not found"));
+    }
+
     public LuckyDayComponent getLuckyDayComponent() {
         return new LuckyDayComponent(driver, getLuckyDayModalRoot());
     }

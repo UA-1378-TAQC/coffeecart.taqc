@@ -40,9 +40,8 @@ public class PaymentDetailModal extends BaseModal {
     @FindBy(xpath = ".//section/button")
     private WebElement closeModalWindowButton;
     @Getter
-    @FindBy(xpath = ".//div[@class='modal-content size']")
+    @FindBy(xpath = "//*[contains(@class, 'modal-content') and contains(@class, 'size')]")
     private WebElement paymentModal;
-
 
     public PaymentDetailModal(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
@@ -87,7 +86,7 @@ public class PaymentDetailModal extends BaseModal {
     }
 
     public boolean isCheckboxMarked() {
-        return Boolean.parseBoolean(inputCheckbox.getAttribute("checked"));
+        return Boolean.parseBoolean(inputCheckbox.getDomProperty("checked"));
     }
 
     @Step("Mark the check box")
@@ -120,4 +119,13 @@ public class PaymentDetailModal extends BaseModal {
         getCloseModalWindowButton().click();
         return new CartPage(driver);
     }
+
+    public String getInputNameValue() {
+        return inputName.getDomProperty("value");
+    }
+
+    public String getInputEmailValue() {
+        return inputEmail.getDomProperty("value");
+    }
+
 }
