@@ -16,6 +16,7 @@ public class TestPossibilityAddingMocha extends BaseTest {
     @Test(dataProvider = "drinkNames", dataProviderClass = MenuPageDataProviders.class)
     @Description("Verification of the possibility of adding Mocha to the cart in the pop-up 'Lucky Day'")
     @Feature("Pop-up 'Lucky Day'")
+    @Issue("29")
     @Owner("Mariia Mykhailenko")
     public void possibilityAddingMocha(String drinkName){
         SoftAssert softAssert = new SoftAssert();
