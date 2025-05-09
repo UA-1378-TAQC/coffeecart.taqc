@@ -11,24 +11,22 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.Optional;
 
-public class IncreaseItemsNumberInCart extends BaseTestRunner {
+public class IncreaseItemsNumberInCartTest extends BaseTestRunner {
     @Test
     public void testIncreaseItemsNumberInCart() {
-        DrinkEnum espressoMacchiato = DrinkEnum.ESPRESSO_MACCHIATO;
-        String drinkName = espressoMacchiato.getRecipe().getName();
         MenuPage menuPage = new MenuPage(driver);
 
         CartPage cartPage = menuPage
-                .clickDrink(drinkName)
+                .clickDrink(DrinkEnum.getName(DrinkEnum.ESPRESSO_MACCHIATO))
                 .goToCartPage();
 
         Optional<FullItemComponent> optionalItem = cartPage
                 .getFullItems().stream()
-                .filter(item -> item.getItemLabelString().equals(drinkName))
+                .filter(item -> item.getItemLabelString().equals(DrinkEnum.getName(DrinkEnum.ESPRESSO_MACCHIATO)))
                 .findFirst();
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(optionalItem.isPresent(), "The drink '" + drinkName + "' should be present in the cart");
+        softAssert.assertTrue(optionalItem.isPresent(), "The drink '" + DrinkEnum.getName(DrinkEnum.ESPRESSO_MACCHIATO) + "' should be present in the cart");
 
         FullItemComponent item = optionalItem.get();
         item.clickOnAddButton();
