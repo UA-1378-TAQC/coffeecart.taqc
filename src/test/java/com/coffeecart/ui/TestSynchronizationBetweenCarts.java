@@ -7,6 +7,7 @@ import com.coffeecart.ui.component.ShortItemComponent;
 import com.coffeecart.ui.page.CartPage;
 import com.coffeecart.ui.page.MenuPage;
 import com.coffeecart.ui.testrunners.BaseTestRunner;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -17,6 +18,10 @@ public class TestSynchronizationBetweenCarts extends BaseTestRunner {
     String drinkName = DrinkEnum.FLAT_WHITE.getRecipe().getName();
 
     @Test
+    @Description("Verification of data changes synchronization between the cart page and the pop-up cart")
+    @Feature("Synchronization of the cart page with the pop-up cart")
+    @Issue("24")
+    @Owner("Mariia Mykhailenko")
     public void testSynchronizationBetweenCarts() {
         SoftAssert softAssert = new SoftAssert();
         MenuPage menuPage = new MenuPage(driver);
@@ -53,8 +58,9 @@ public class TestSynchronizationBetweenCarts extends BaseTestRunner {
                 .getText();
         softAssert.assertEquals(totalPriceOnCartPage, actualTotalPriceInPopUpCart);
 
+        int oneClick = 1;
         cartPage = itemOnCartPage
-                .clickOnAddButton(1);
+                .clickOnAddButton(oneClick);
         countOfItemOnCartPage = cartPage
                 .getFullItemByName(drinkName)
                 .getCount();
