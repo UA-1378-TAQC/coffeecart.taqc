@@ -43,7 +43,6 @@ public class PaymentDetailModal extends BaseModal {
     @FindBy(xpath = "//*[contains(@class, 'modal-content') and contains(@class, 'size')]")
     private WebElement paymentModal;
 
-
     public PaymentDetailModal(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
     }
