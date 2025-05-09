@@ -39,6 +39,18 @@ public class BaseTestRunner {
     public void initDriver() {
         ChromeOptions options = new ChromeOptions();
 
+        String chromeOptionsArg = System.getProperty("chrome.options", "");
+        if (!chromeOptionsArg.isEmpty()) {
+            for (String option : chromeOptionsArg.split(",")) {
+                options.addArguments(option);
+            }
+        }
+
+        String userDataDir = System.getProperty("user.data.dir");
+        if (userDataDir != null && !userDataDir.isEmpty()) {
+            options.addArguments("--user-data-dir=" + userDataDir);
+        }
+
 //        options.addArguments(" --profile-directory=Default");
 
         driver = new ChromeDriver(options);
@@ -63,6 +75,7 @@ public class BaseTestRunner {
         if (driver != null) {
             driver.quit();
         }
+        driver = null;
     }
 
     @AfterSuite
@@ -70,6 +83,7 @@ public class BaseTestRunner {
         if (driver != null) {
             driver.quit();
         }
+        driver = null;
     }
 
     @Step("Clear Browser Memory Cookies and LocalStorage.")
