@@ -100,4 +100,11 @@ public class CheckCupPriceCostAndIngredientsDataProvider {
                 {"Mocha", "whipped cream", "chocolate syrup", "chocolate syrup", "chocolate syrup"}
         };
     }
+
+    @DataProvider(name="checkDecreaseButtonInTheCartListDataProvider")
+    public Object[][] checkDecreaseButtonInTheCartListDataProvider(){
+        return new Object[][]{
+                {"Espresso Macchiato", 12.00}
+        };
+    }
 }
