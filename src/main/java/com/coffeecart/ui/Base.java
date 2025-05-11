@@ -1,9 +1,7 @@
 package com.coffeecart.ui;
 
-
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
-import org.openqa.selenium.devtools.v132.page.Page;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.function.Supplier;
 
 public abstract class Base {
     protected WebDriver driver;
@@ -112,6 +111,19 @@ public abstract class Base {
 
     public void waitUntilElementClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    protected void waitCssValueChanged(Supplier<String> currentValueSupplier,
+                                       String oldValue,
+                                       Duration timeout) {
+
+        new WebDriverWait(driver, timeout)
+                .until(d -> !currentValueSupplier.get().equals(oldValue));
+    }
+
+    protected void waitUntilElementInvisible(WebElement element, Duration timeout) {
+        new WebDriverWait(driver, timeout)
+                .until(ExpectedConditions.invisibilityOf(element));
     }
 
     public void refreshPage() {

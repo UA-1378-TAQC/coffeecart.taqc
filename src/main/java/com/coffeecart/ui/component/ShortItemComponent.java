@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 
 public class ShortItemComponent extends BaseComponent{
-
     @Getter
     @FindBy(xpath = "./div[1]/span[1]")
     WebElement spanName;

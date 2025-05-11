@@ -1,0 +1,95 @@
+name: Java CI with Allure Report
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+  # Manual
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "21"
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Build with Maven (skip tests)
+        run: mvn clean install -DskipTests --batch-mode --no-transfer-progress
+
+  run-tests:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+      && github.event_name == 'push'
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "21"
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@latest
+      - name: Setup ChromeDriver
+        uses: nanasess/setup-chromedriver@master
+      - name: Start ChromeDriver
+        run: |
+          # Start chromedriver in the background
+          chromedriver --port=4444 &
+          sleep 3 #
+      - name: Build and run tests with Maven
+        run: |
+          # Pass system properties to fix Chrome issues
+          mvn clean test \
+            -Dwebdriver.chrome.driver=$(which chromedriver) \
+            -Dchrome.options="--no-sandbox,--headless=new,--disable-gpu,--disable-dev-shm-usage,--remote-allow-origins=*" \
+            -Duser.data.dir=/tmp/chrome-data-$(date +%s)
+        continue-on-error: true
+
+      - name: Get Allure history
+        uses: actions/checkout@v3
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@master
+        with:
+          allure_results: target/allure-results
+          allure_history: allure-history
+          gh_pages: gh-pages
+          allure_report: allure-report
+          keep_reports: 20
+
+      - name: Deploy report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history

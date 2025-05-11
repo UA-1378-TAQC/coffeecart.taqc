@@ -1,6 +1,5 @@
 package com.coffeecart.ui.modal;
 
-import com.coffeecart.ui.data.Colors;
 import com.coffeecart.ui.page.CartPage;
 import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.Step;
@@ -41,9 +40,8 @@ public class PaymentDetailModal extends BaseModal {
     @FindBy(xpath = ".//section/button")
     private WebElement closeModalWindowButton;
     @Getter
-    @FindBy(xpath = "//*[@id=\"app\"]/div[2]/div[2]/div")
+    @FindBy(xpath = "//*[contains(@class, 'modal-content') and contains(@class, 'size')]")
     private WebElement paymentModal;
-
 
     public PaymentDetailModal(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
@@ -88,11 +86,7 @@ public class PaymentDetailModal extends BaseModal {
     }
 
     public boolean isCheckboxMarked() {
-        String gtmValue = inputCheckbox.getAttribute("data-gtm-form-interact-field-id");
-        if ("2".equals(gtmValue)) {
-            return true;
-        }
-        return false;
+        return Boolean.parseBoolean(inputCheckbox.getDomProperty("checked"));
     }
 
     @Step("Mark the check box")
@@ -126,9 +120,12 @@ public class PaymentDetailModal extends BaseModal {
         return new CartPage(driver);
     }
 
-    public boolean isBackgroundColorOfPaymentDetailModalMatch() {
-        String color = paymentModal.getCssValue("background-color");
-        return color.equals(Colors.TERRACOTTA.getColor()) || color.equals(Colors.TURQUOISE.getColor());
+    public String getInputNameValue() {
+        return inputName.getDomProperty("value");
+    }
+
+    public String getInputEmailValue() {
+        return inputEmail.getDomProperty("value");
     }
 
 }
