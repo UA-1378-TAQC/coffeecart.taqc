@@ -8,6 +8,8 @@ import com.coffeecart.ui.modal.PaymentDetailModal;
 import io.qameta.allure.Step;
 
 import lombok.Getter;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,6 +41,14 @@ public class MenuPage extends BasePage {
     @Getter
     @FindBy(xpath = "//*[@class=\"pay-container\"]")
     private WebElement payContainer;
+
+    @Getter
+    @FindBy(xpath = "//button[@id='submit-payment' and @type='submit']")
+    private WebElement submitButton;
+
+    @Getter
+    @FindBy(xpath = "//input[@name='name']")
+    private WebElement nameField;
 
     public MenuPage(WebDriver driver) {
         super(driver);
@@ -86,6 +96,15 @@ public class MenuPage extends BasePage {
     @Step("Navigate to the GitHub Page")
     public GitHubPage goToGitHubPage() {
         return header.navigateToGitHub();
+    }
+
+    public boolean isSubmitButtonEnabled() {
+        return submitButton.isEnabled();
+    }
+
+    public String getNameValidationMessage() {
+        WebElement nameField = driver.findElement(By.id("name"));
+        return nameField.getAttribute("validationMessage");
     }
 
     public boolean isLuckyModalNotDisplayed() {
