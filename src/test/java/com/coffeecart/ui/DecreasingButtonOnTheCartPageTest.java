@@ -1,6 +1,7 @@
 package com.coffeecart.ui;
 
 import com.coffeecart.dataprovider.CheckCupPriceCostAndIngredientsDataProvider;
+import com.coffeecart.dataprovider.DecreasingButtonOnTheCartPageTestDataProvider;
 import com.coffeecart.ui.component.FullItemComponent;
 import com.coffeecart.ui.elements.TotalButtonElement;
 import com.coffeecart.ui.page.CartPage;
@@ -14,7 +15,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class DecreasingButtonOnTheCartPageTest extends BaseTestRunner {
-    @Test(dataProvider = "checkDecreaseButtonInTheCartListDataProvider", dataProviderClass = CheckCupPriceCostAndIngredientsDataProvider.class)
+    @Test(dataProvider = "checkDecreaseButtonInTheCartListDataProvider", dataProviderClass = DecreasingButtonOnTheCartPageTestDataProvider.class)
     @Description("Verify the correctness of decreasing the number of {drinkName} on the Cart page")
     @Feature("Cart list decrease button verification")
     @Issue("17")

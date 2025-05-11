@@ -1,8 +1,4 @@
 package com.coffeecart.dataprovider;
-
-import com.coffeecart.ui.data.Ingredients;
-import com.coffeecart.ui.elements.Drink;
-import com.coffeecart.ui.elements.DrinkIngredient;
 import org.testng.annotations.DataProvider;
 
 public class CheckCupPriceCostAndIngredientsDataProvider {
@@ -21,18 +17,6 @@ public class CheckCupPriceCostAndIngredientsDataProvider {
         };
     }
 
-    @DataProvider(name = "checkIncorrectCardTitlesDataProvider")
-    public Object[][] checkIncorrectCardTitlesDataProvider() {
-        return new Object[][]{
-                {"Irish"},
-                {"Hot Chocolate"},
-                {"1231"},
-                {"1"},
-                {"Empire State Building"},
-                {"@"}
-        };
-    }
-
     @DataProvider(name = "checkCorrectCardPricesDataProvider")
     public Object[][] checkCorrectCardPricesDataProvider() {
         return new Object[][]{
@@ -45,15 +29,6 @@ public class CheckCupPriceCostAndIngredientsDataProvider {
                 {"Cafe Latte", 16.00},
                 {"Espresso Con Panna", 14.00},
                 {"Cafe Breve", 15.00}
-        };
-    }
-
-    @DataProvider(name = "checkIncorrectCardPricesDataProvider")
-    public Object[][] checkIncorrectCardPricesDataProvider() {
-        return new Object[][]{
-                {"Espresso", 11.00},
-                {"Espresso Macchiato", 12.01},
-                {"Cappuccino", 18.99}
         };
     }
 
@@ -72,24 +47,6 @@ public class CheckCupPriceCostAndIngredientsDataProvider {
         };
     }
 
-    @DataProvider(name = "checkIncorrectCardIngredientsDataProvider")
-    public Object[][] checkIncorrectCardIngredientsDataProvider() {
-        return new Object[][]{
-                {"Espresso", "espresso", "!water", "!milk foam"},
-                {"Espresso Macchiato", "!steamed milk", "!water", "!chocolate syrup"},
-                {"Cappuccino", "!1213", "!1", "!@$@#$", "!@"},
-                {"Mocha", "!ball", "!socks", "chocolate syrup", "!plant"}
-        };
-    }
-
-    @DataProvider(name = "checkIncorrectCardIngredientsLengthDataProvider")
-    public Object[][] checkIncorrectCardIngredientsLengthDataProvider() {
-        return new Object[][]{
-                {"Espresso", new String[] {}},
-                {"Espresso Macchiato", "espresso"},
-                {"Cappuccino", "milk foam", "steamed milk", "espresso", "milk foam"}
-        };
-    }
 
     @DataProvider(name = "checkIncorrectFullComplianceCardIngredientsDataProvider")
     public Object[][] checkIncorrectFullComplianceCardIngredientsDataProvider() {
@@ -98,13 +55,6 @@ public class CheckCupPriceCostAndIngredientsDataProvider {
                 {"Espresso Macchiato", "espresso", "espresso"},
                 {"Cappuccino", "steamed milk", "steamed milk", "espresso"},
                 {"Mocha", "whipped cream", "chocolate syrup", "chocolate syrup", "chocolate syrup"}
-        };
-    }
-
-    @DataProvider(name="checkDecreaseButtonInTheCartListDataProvider")
-    public Object[][] checkDecreaseButtonInTheCartListDataProvider(){
-        return new Object[][]{
-                {"Espresso Macchiato", 12.00}
         };
     }
 }
