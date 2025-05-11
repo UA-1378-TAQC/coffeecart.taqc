@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class TestName extends BaseTest {
+public class TestName extends BaseTestRunner {
     @DataProvider(name = "invalidNameData")
     public Object[][] invalidNameData() {
         return new Object[][]{
