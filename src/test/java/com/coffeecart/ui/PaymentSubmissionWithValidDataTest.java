@@ -17,7 +17,7 @@ import org.testng.asserts.SoftAssert;
 public class PaymentSubmissionWithValidDataTest extends BaseTestRunner {
     private static final String SUCCESS_MESSAGE = "Thanks for your purchase. Please check your email for payment.";
     private static final String DRINK = DrinkEnum.ESPRESSO.getRecipe().getName();
-
+        
     @Test
     @Description("Verify valid name/email submission shows confirmation message.")
     @Feature("Payment Form Validation")
