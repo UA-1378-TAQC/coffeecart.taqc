@@ -1,19 +1,22 @@
 package com.coffeecart.dataprovider;
+import com.coffeecart.data.DrinkEnum;
 import org.testng.annotations.DataProvider;
+
+import java.util.Arrays;
 
 public class CheckCupPriceCostAndIngredientsDataProvider {
     @DataProvider(name = "checkCorrectCardTitlesDataProvider")
     public Object[][] checkCorrectCardTitlesDataProvider() {
         return new Object[][]{
-                {"Espresso"},
-                {"Espresso Macchiato"},
-                {"Cappuccino"},
-                {"Mocha"},
-                {"Flat White"},
-                {"Americano"},
-                {"Cafe Latte"},
-                {"Espresso Con Panna"},
-                {"Cafe Breve"}
+                {DrinkEnum.ESPRESSO},
+                {DrinkEnum.ESPRESSO_MACCHIATO},
+                {DrinkEnum.CAPPUCCINO},
+                {DrinkEnum.MOCHA},
+                {DrinkEnum.FLAT_WHITE},
+                {DrinkEnum.AMERICANO},
+                {DrinkEnum.CAFFE_LATTE},
+                {DrinkEnum.ESPRESSO_CON_PANNA},
+                {DrinkEnum.CAFE_BREVE}
         };
     }
 

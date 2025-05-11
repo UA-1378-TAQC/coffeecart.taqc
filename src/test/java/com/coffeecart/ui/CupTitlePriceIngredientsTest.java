@@ -1,5 +1,6 @@
 package com.coffeecart.ui;
 
+import com.coffeecart.data.DrinkEnum;
 import com.coffeecart.dataprovider.CheckCupPriceCostAndIngredientsDataProvider;
 import com.coffeecart.ui.component.CardComponent;
 import com.coffeecart.ui.component.CupComponent;
@@ -35,7 +36,8 @@ public class CupTitlePriceIngredientsTest extends BaseTestRunner {
     @Feature("Coffee cards verification")
     @Issue("5")
     @Owner("Anatolii Orynchak")
-    public void checkCorrectCardTitles(String cartTitle){
+    public void checkCorrectCardTitles(DrinkEnum drink){
+        String cartTitle = DrinkEnum.getName(drink);
         List<CardComponent> cards = new MenuPage(driver).getCards();
 
         Assert.assertTrue(cards

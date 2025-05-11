@@ -31,7 +31,7 @@ public enum DrinkEnum {
     AMERICANO(new Drink("Americano", "美式咖啡",
             new DrinkIngredient(Ingredients.WATER, 3),
             new DrinkIngredient(Ingredients.ESPRESSO, 1))),
-    CAFFE_LATTE(new Drink("Caffe Latte", "拿铁",
+    CAFFE_LATTE(new Drink("Cafe Latte", "拿铁",
             new DrinkIngredient(Ingredients.MILK_FOAM, 1),
             new DrinkIngredient(Ingredients.STEAMED_MILK, 2),
             new DrinkIngredient(Ingredients.ESPRESSO, 1))),
