@@ -53,6 +53,8 @@ public class BaseTestRunner {
 
 //        options.addArguments(" --profile-directory=Default");
 
+        options.addArguments("--lang=en");
+
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(testValueProvider.getImplicitlyWait()));
@@ -104,4 +106,6 @@ public class BaseTestRunner {
         }
         return result;
     }
+
+    
 }
