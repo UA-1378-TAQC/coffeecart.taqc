@@ -46,4 +46,15 @@ public class ShortItemComponent extends BaseComponent{
         buttonMinus.click();
         return this;
     }
+
+    public boolean plusButtonIsEnabled() {
+        return buttonPlus.isEnabled();
+    }
+
+    public ShortItemComponent clickOnAddButton() {
+        if (plusButtonIsEnabled()) {
+            buttonPlus.click();
+        }
+        return this;
+    }
 }
