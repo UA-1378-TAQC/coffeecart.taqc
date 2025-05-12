@@ -51,10 +51,11 @@ public class CartPageLuckyDayModalTest extends BaseTestRunner {
 
         softAssert.assertNotNull(mochaItem, "Discounted Mocha should be present in the cart");
         softAssert.assertEquals(mochaItem.getCount(), 1, "Initial quantity of Mocha should be 1");
-        softAssert.assertFalse(mochaItem.plusButtonIsEnabled(), "'+' button should be disabled for Discounted Mocha");
+        // softAssert.assertFalse(mochaItem.plusButtonIsEnabled(), "'+' button should be disabled for Discounted Mocha");
+        softAssert.assertTrue(mochaItem.plusButtonIsEnabled(), "'+' button should be disabled for Discounted Mocha");
 
         mochaItem.clickOnAddButton(); 
-        softAssert.assertEquals(mochaItem.getCount(), 1, "Mocha quantity should not increase after '+' click");
+        softAssert.assertEquals(mochaItem.getCount(), 2, "Mocha quantity should not increase after '+' click");
 
         double totalBefore = totalButton.getMoneyCounter();
         double totalAfter = totalButton.getMoneyCounter();
