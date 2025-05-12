@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class TC12 extends BaseTestRunner {
+public class TestNoButtonRightClickModal extends BaseTestRunner {
 
     private static final String TARGET_DRINK = DrinkEnum.getName(DrinkEnum.ESPRESSO_MACCHIATO);
     private static final String OTHER_DRINK   = DrinkEnum.getName(DrinkEnum.AMERICANO);
