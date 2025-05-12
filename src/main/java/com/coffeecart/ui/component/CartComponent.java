@@ -23,5 +23,11 @@ public class CartComponent extends BaseComponent {
                 .map(element -> new ShortItemComponent(driver, element))
                 .collect(Collectors.toList());
     }
+    public ShortItemComponent findItemByName(String drinkName) {
+        return getShortItems().stream()
+                .filter(shortItem -> shortItem.getName().contains(drinkName))
+                .findFirst()
+                .orElse(null);
+    }
 
 }

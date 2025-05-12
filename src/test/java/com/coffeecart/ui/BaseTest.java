@@ -36,7 +36,7 @@ public class BaseTest extends BaseTestRunner {
                 DrinkEnum.getName(DrinkEnum.MOCHA),
                 DrinkEnum.getName(DrinkEnum.FLAT_WHITE),
                 DrinkEnum.getName(DrinkEnum.AMERICANO),
-                DrinkEnum.getName(DrinkEnum.CAFFE_LATTE),
+                DrinkEnum.getName(DrinkEnum.CAFE_LATTE),
                 DrinkEnum.getName(DrinkEnum.ESPRESSO_CON_PANNA),
                 DrinkEnum.getName(DrinkEnum.CAFE_BREVE)
         };
@@ -77,7 +77,7 @@ public void testRecipeIngredientsOrder() {
     softAssert.assertEquals(getIngredientNames(DrinkEnum.AMERICANO.getRecipe().getIngredients()),
             Arrays.asList("espresso", "water"), "Неправильні інгредієнти для Americano");
 
-    softAssert.assertEquals(getIngredientNames(DrinkEnum.CAFFE_LATTE.getRecipe().getIngredients()),
+    softAssert.assertEquals(getIngredientNames(DrinkEnum.CAFE_LATTE.getRecipe().getIngredients()),
             Arrays.asList("espresso", "steamed milk", "milk foam"), "Неправильні інгредієнти для Caffe Latte");
 
     softAssert.assertAll();
