@@ -43,6 +43,7 @@ public enum DrinkEnum {
             new DrinkIngredient(Ingredients.STEAMED_CREAM, 1),
             new DrinkIngredient(Ingredients.STEAMED_MILK, 1),
             new DrinkIngredient(Ingredients.ESPRESSO, 1)));
+
     @Getter
     private Drink recipe;
     @Getter

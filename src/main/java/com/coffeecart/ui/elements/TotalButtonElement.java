@@ -4,6 +4,7 @@ import com.coffeecart.ui.component.CartComponent;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import lombok.Getter;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -32,19 +33,26 @@ public class TotalButtonElement extends BaseElement {
         actions = new Actions(driver);
     }
 
-    public PaymentDetailModal clickTotalButton(){
+    public PaymentDetailModal clickTotalButton() {
         waitUntilElementClickable(totalButton);
         totalButton.click();
-        return new PaymentDetailModal(driver,modalElement);
+        return new PaymentDetailModal(driver, modalElement);
     }
 
     public double getMoneyCounter() {
-        return Double.parseDouble(totalButton.getText().replaceAll("[^\\d.]",""));
+        return Double.parseDouble(totalButton.getText().replaceAll("[^\\d.]", ""));
     }
 
-    public CartComponent hoverTotalButton(){
+    public CartComponent hoverTotalButton() {
         actions.moveToElement(totalButton).perform();
         waitUntilElementVisible(cartComponentRoot);
         return new CartComponent(driver, cartComponentRoot);
+    }
+
+    public boolean isDisplayed() {
+        return totalButton.isDisplayed();
+    }
+    public void hover() {
+        actions.moveToElement(totalButton).perform();
     }
 }

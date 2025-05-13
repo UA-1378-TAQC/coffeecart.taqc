@@ -1,19 +1,18 @@
-# coffee-cart Automated Tests  
-🧪 **Automated testing for the [coffee-cart.app](https://coffee-cart.app) web application**  
+# coffee-cart Automated Tests
+🧪 **Automated testing for the [coffee-cart.app](https://coffee-cart.app) web application**
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/UA-1378-TAQC/coffeecart.taqc?utm_source=oss&utm_medium=github&utm_campaign=UA-1378-TAQC%2Fcoffeecart.taqc&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
 
-## 🛠 Technologies & Stack  
-- **Programming Language:** Java 21  
-- **Testing Framework:**  TestNG  
-- **Automation Library:** Selenium WebDriver  
-- **Dependency Management:** Maven  
-- **Other Tools:**  
+## 🛠 Technologies & Stack
+- **Programming Language:** Java 21
+- **Testing Framework:**  TestNG
+- **Automation Library:** Selenium WebDriver
+- **Dependency Management:** Maven
+- **Other Tools:**
   - WebDriverManager – for automatic WebDriver management
-  - Allure – for test reporting  
+  - Allure – for test reporting
 
-
-## 📋 Project Structure  
+## 📋 Project Structure
 ```
 📂 src
 ├── 📂 main
@@ -35,8 +34,8 @@
 └── 📄 pom.xml                       # Maven dependencies
  ```
 
-## 🔧 Installation & Setup  
-### 1️⃣ Clone the repository  
+## 🔧 Installation & Setup
+### 1️⃣ Clone the repository
 ```
 git clone https://github.com/UA-1378-TAQC/coffeecart.taqc.git
 cd coffeecart.taqc

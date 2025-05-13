@@ -65,6 +65,15 @@ public class MenuPage extends BasePage {
         return new TotalButtonElement(driver, totalButton);
     }
 
+
+    public CardComponent getCardByName(String drinkName) {
+        return cards.stream()
+                .filter(c -> c.getName().equals(drinkName))
+                .findFirst()
+                .orElseThrow(() ->
+                        new IllegalStateException("Card with name " + drinkName + " not found"));
+    }
+
     public LuckyDayComponent getLuckyDayComponent() {
         return new LuckyDayComponent(driver, getLuckyDayModalRoot());
     }
@@ -102,29 +111,21 @@ public class MenuPage extends BasePage {
         String turquoise = Colors.TURQUOISE.getColor();
         String terracotta = Colors.TERRACOTTA.getColor();
 
-        try {
-            int[] actualRgb = parseRgb(color);
-            int[] turquoiseRgb = parseRgb(turquoise);
-            int[] terracottaRgb = parseRgb(terracotta);
+        int[] actualRgb = parseRgb(color);
+        int[] turquoiseRgb = parseRgb(turquoise);
+        int[] terracottaRgb = parseRgb(terracotta);
 
-            boolean redInRange = isInRange(actualRgb[0], turquoiseRgb[0], terracottaRgb[0]);
-            boolean greenInRange = isInRange(actualRgb[1], turquoiseRgb[1], terracottaRgb[1]);
-            boolean blueInRange = isInRange(actualRgb[2], turquoiseRgb[2], terracottaRgb[2]);
+        boolean redInRange = isInRange(actualRgb[0], turquoiseRgb[0], terracottaRgb[0]);
+        boolean greenInRange = isInRange(actualRgb[1], turquoiseRgb[1], terracottaRgb[1]);
+        boolean blueInRange = isInRange(actualRgb[2], turquoiseRgb[2], terracottaRgb[2]);
 
-            return redInRange && greenInRange && blueInRange;
-        } catch (Exception e) {
-            System.err.println("Error parsing color: " + e.getMessage());
-            return false;
-        }
+        return redInRange && greenInRange && blueInRange;
+
     }
 
     private int[] parseRgb(String rgbString) {
         String clean = rgbString.replaceAll("[^0-9,]", "");
         String[] parts = clean.split(",");
-
-        if (parts.length < 3) {
-            throw new IllegalArgumentException("Invalid RGB format: " + rgbString);
-        }
 
         return new int[]{
                 Integer.parseInt(parts[0].trim()),
@@ -138,6 +139,8 @@ public class MenuPage extends BasePage {
         int max = Math.max(bound1, bound2);
         return value >= min && value <= max;
     }
-
+    public boolean isLuckyModalDisplayed() {
+        return getLuckyDayModalRoot().isDisplayed();
+    }
 }
 

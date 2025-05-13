@@ -1,12 +1,17 @@
 package com.coffeecart.ui.component;
 
+import com.coffeecart.ui.modal.AddModal;
 import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import lombok.Getter;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,6 +90,19 @@ public class CupComponent extends BaseComponent {
         waitUntilElementClickable(cupBody);
         cupBody.click();
         return new MenuPage(driver);
+    }
+
+    @Step("Right‑click cup body → open Add‑to‑Cart modal")
+    public AddModal rightClickCupBody() {
+
+        actions.moveToElement(cupBody).contextClick().perform();
+
+        By modalLocator = By.xpath("//dialog[@data-cy='add-to-cart-modal' and @open]");
+
+        WebElement modalRoot = new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOfElementLocated(modalLocator));
+
+        return new AddModal(driver, modalRoot);
     }
 
 }
