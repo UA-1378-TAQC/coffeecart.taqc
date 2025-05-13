@@ -33,7 +33,7 @@ public class TestDiscountedMochaCartPageMinusButton extends BaseTestRunner {
         menuPage.clickDrink(DRINK1).clickDrink(DRINK2).clickDrink(DRINK3);
 
         LuckyDayComponent luckyDayComponent = menuPage.getLuckyDayComponent();
-        softAssert.assertEquals(menuPage.getLuckyDayModalRoot().isDisplayed(), "The LuckyDayModal should be displayed.");
+        softAssert.assertTrue(menuPage.getLuckyDayModalRoot().isDisplayed(), "The LuckyDayModal should be displayed.");
         luckyDayComponent.clickYes();
 
         int numberItemsInCard = menuPage.getHeader().getTotalNumberItemsFromCartLink();
