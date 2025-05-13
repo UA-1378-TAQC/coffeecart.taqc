@@ -4,6 +4,10 @@ import com.coffeecart.data.DrinkEnum;
 import com.coffeecart.ui.component.ShortItemComponent;
 import com.coffeecart.ui.page.MenuPage;
 import com.coffeecart.ui.testrunners.BaseTestRunner;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -11,6 +15,10 @@ import java.util.*;
 
 public class DiscardLuckyPropositionTest extends BaseTestRunner {
     @Test
+    @Description("Verify that lucky proposition drink is not added to cart after refusing from it")
+    @Feature("Verify lucky proposition discard")
+    @Issue("10")
+    @Owner("Dmytro Zubenko")
     public void testLuckyPropositionDiscard() {
         MenuPage menuPage = new MenuPage(driver);
         menuPage.clickDrink(DrinkEnum.getName(DrinkEnum.FLAT_WHITE))
