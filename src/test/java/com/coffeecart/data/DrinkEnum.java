@@ -11,34 +11,34 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public enum DrinkEnum {
-    ESPRESSO(new Drink("Espresso", "特浓咖啡",
+    ESPRESSO(10,new Drink("Espresso", "特浓咖啡",
             new DrinkIngredient(Ingredients.ESPRESSO, 1))),
-    ESPRESSO_MACCHIATO(new Drink("Espresso Macchiato", "浓缩玛奇朵",
+    ESPRESSO_MACCHIATO(12,new Drink("Espresso Macchiato", "浓缩玛奇朵",
             new DrinkIngredient(Ingredients.MILK_FOAM, 1),
             new DrinkIngredient(Ingredients.ESPRESSO, 1))),
-    CAPPUCCINO(new Drink("Cappuccino", "卡布奇诺",
+    CAPPUCCINO(19,new Drink("Cappuccino", "卡布奇诺",
             new DrinkIngredient(Ingredients.MILK_FOAM, 2),
             new DrinkIngredient(Ingredients.STEAMED_MILK, 1),
             new DrinkIngredient(Ingredients.ESPRESSO, 1))),
-    MOCHA(new Drink("Mocha", "摩卡",
+    MOCHA(8,new Drink("Mocha", "摩卡",
             new DrinkIngredient(Ingredients.WHIPPED_CREAM, 1),
             new DrinkIngredient(Ingredients.STEAMED_MILK, 1),
             new DrinkIngredient(Ingredients.CHOCOLATE_SYRUP, 1),
             new DrinkIngredient(Ingredients.ESPRESSO, 1))),
-    FLAT_WHITE(new Drink("Flat White", "平白咖啡",
+    FLAT_WHITE(18,new Drink("Flat White", "平白咖啡",
             new DrinkIngredient(Ingredients.STEAMED_MILK, 2),
             new DrinkIngredient(Ingredients.ESPRESSO, 1))),
-    AMERICANO(new Drink("Americano", "美式咖啡",
+    AMERICANO(7,new Drink("Americano", "美式咖啡",
             new DrinkIngredient(Ingredients.WATER, 3),
             new DrinkIngredient(Ingredients.ESPRESSO, 1))),
-    CAFE_LATTE(new Drink("Cafe Latte", "拿铁",
+    CAFE_LATTE(16,new Drink("Cafe Latte", "拿铁",
             new DrinkIngredient(Ingredients.MILK_FOAM, 1),
             new DrinkIngredient(Ingredients.STEAMED_MILK, 2),
             new DrinkIngredient(Ingredients.ESPRESSO, 1))),
-    ESPRESSO_CON_PANNA(new Drink("Espresso Con Panna", "浓缩康宝蓝",
+    ESPRESSO_CON_PANNA(14,new Drink("Espresso Con Panna", "浓缩康宝蓝",
             new DrinkIngredient(Ingredients.WHIPPED_CREAM, 1),
             new DrinkIngredient(Ingredients.ESPRESSO, 1))),
-    CAFE_BREVE(new Drink("Cafe Breve", "半拿铁",
+    CAFE_BREVE(15,new Drink("Cafe Breve", "半拿铁",
             new DrinkIngredient(Ingredients.WHIPPED_CREAM, 1),
             new DrinkIngredient(Ingredients.STEAMED_CREAM, 1),
             new DrinkIngredient(Ingredients.STEAMED_MILK, 1),
@@ -46,8 +46,11 @@ public enum DrinkEnum {
 
     @Getter
     private Drink recipe;
+    @Getter
+    private final int price;
 
-    DrinkEnum(Drink recipe) {
+    DrinkEnum(int price,Drink recipe) {
+        this.price = price;
         this.recipe = recipe;
     }
 
