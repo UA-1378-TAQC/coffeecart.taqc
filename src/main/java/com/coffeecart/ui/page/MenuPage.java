@@ -1,6 +1,7 @@
 package com.coffeecart.ui.page;
 
 import com.coffeecart.ui.component.CardComponent;
+import com.coffeecart.ui.component.CartComponent;
 import com.coffeecart.ui.component.LuckyDayComponent;
 import com.coffeecart.ui.data.Colors;
 import com.coffeecart.ui.elements.TotalButtonElement;
@@ -8,6 +9,7 @@ import com.coffeecart.ui.modal.PaymentDetailModal;
 import io.qameta.allure.Step;
 
 import lombok.Getter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,17 +36,34 @@ public class MenuPage extends BasePage {
 
     @Getter
     @FindBy(xpath = "//button[@class='pay']")
-    private WebElement totalButtonRoot;
+    private WebElement totalButton;
 
     @Getter
     @FindBy(xpath = "//*[@class=\"pay-container\"]")
     private WebElement payContainer;
+
+    @Getter
+    @FindBy(xpath = "//button[@id='submit-payment' and @type='submit']")
+    private WebElement submitButton;
+
+    @Getter
+    @FindBy(xpath = "//input[@name='email']")
+    private WebElement emailField;
+    
+    @Getter
+    @FindBy(xpath = "//ul[@class='cart-preview show']")
+    private WebElement cartPreview;
 
     public MenuPage(WebDriver driver) {
         super(driver);
         for (WebElement card : rootCards) {
             cards.add(new CardComponent(driver, card));
         }
+    }
+    @Step("Display and preview cart pop-up")
+    public CartComponent getCartPreview(WebElement totalButton) {
+        moveToElement(totalButton);
+        return new CartComponent(driver, cartPreview);
     }
 
     @Step("Click 'Total' button")
@@ -53,7 +72,7 @@ public class MenuPage extends BasePage {
     }
 
     public TotalButtonElement getButtonElement() {
-        return new TotalButtonElement(driver, totalButtonRoot);
+        return new TotalButtonElement(driver, totalButton);
     }
 
 
@@ -88,8 +107,18 @@ public class MenuPage extends BasePage {
         return header.navigateToGitHub();
     }
 
+    public boolean isSubmitButtonEnabled() {
+        return submitButton.isEnabled();
+    }
+
+    public String getEmailValidationMessage() {
+        WebElement emailField = driver.findElement(By.id("email"));
+        return emailField.getAttribute("validationMessage");
+    }
+
     public boolean isLuckyModalNotDisplayed() {
         try {
+
             return !getLuckyDayModalRoot().isDisplayed();
         } catch (NoSuchElementException e) {
             return true;
@@ -129,6 +158,9 @@ public class MenuPage extends BasePage {
         int min = Math.min(bound1, bound2);
         int max = Math.max(bound1, bound2);
         return value >= min && value <= max;
+    }
+    public boolean isLuckyModalDisplayed() {
+        return getLuckyDayModalRoot().isDisplayed();
     }
 }
 

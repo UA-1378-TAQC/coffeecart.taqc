@@ -14,7 +14,7 @@ public class CheckCupPriceCostAndIngredientsDataProvider {
                 {DrinkEnum.MOCHA},
                 {DrinkEnum.FLAT_WHITE},
                 {DrinkEnum.AMERICANO},
-                {DrinkEnum.CAFFE_LATTE},
+                {DrinkEnum.CAFE_LATTE},
                 {DrinkEnum.ESPRESSO_CON_PANNA},
                 {DrinkEnum.CAFE_BREVE}
         };
