@@ -7,8 +7,7 @@ import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import java.util.Arrays;
+import java.util.Random;
 
 public class LuckyDayPopUpAppears  extends BaseTestRunner {
     SoftAssert softAssert = new SoftAssert();
@@ -23,6 +22,7 @@ public class LuckyDayPopUpAppears  extends BaseTestRunner {
                 { new DrinkEnum[] { DrinkEnum.ESPRESSO_MACCHIATO, DrinkEnum.ESPRESSO_CON_PANNA, DrinkEnum.CAFE_BREVE } }
         };
     }
+
     @Link(name = "Coffee Cart", url = "https://coffee-cart.app/")
     @Owner("Khrystyna Martynova")
     @Issue("2")
@@ -35,11 +35,12 @@ public class LuckyDayPopUpAppears  extends BaseTestRunner {
     public void  luckyDayPopUpAppearsTest(DrinkEnum[] drinks) {
         MenuPage menuPage = new MenuPage(driver);
 
-        Arrays.stream(drinks)
-                .map(drink -> drink.getRecipe().getName())
-                .forEach(menuPage::clickDrink);
+        for (int i = 0; i < drinks.length; i++) {
+            String drinkName = drinks[i].getRecipe().getName();
+            menuPage.clickDrink(drinkName);
+        }
 
-        boolean isPopupVisible = menuPage.isLuckyModalDisplayed();
+            boolean isPopupVisible = menuPage.isLuckyModalDisplayed();
         softAssert.assertTrue(isPopupVisible, "Lucky Day pop-up should appear after 3 clicks");
 
         if (isPopupVisible) {
