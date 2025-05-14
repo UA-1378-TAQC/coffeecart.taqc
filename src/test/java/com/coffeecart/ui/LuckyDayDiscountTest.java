@@ -2,13 +2,15 @@ package com.coffeecart.ui;
 
 import com.coffeecart.data.DrinkEnum;
 import com.coffeecart.ui.page.MenuPage;
+import com.coffeecart.ui.testrunners.BaseTestRunner;
 import io.qameta.allure.Step;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class LuckyDayDiscountTest extends BaseTest {
+public class LuckyDayDiscountTest extends BaseTestRunner {
 
+    private static final int ITEMS_PER_MODAL = 3;
     @DataProvider(name = "drinkData")
     public Object[][] drinkData() {
         return new Object[][]{
@@ -23,7 +25,6 @@ public class LuckyDayDiscountTest extends BaseTest {
                 {DrinkEnum.getName(DrinkEnum.CAFE_BREVE), 9},
         };
     }
-
     @Test(dataProvider = "drinkData")
     @Step("Verify LuckyDay modal appears after every 3rd item added")
     public void verifyLuckyDayModalAfterEvery3rdItem(String drinkName, int step) {
@@ -32,23 +33,19 @@ public class LuckyDayDiscountTest extends BaseTest {
 
         menuPage.clickDrink(drinkName);
 
-        if (step % 3 == 0) {
+        if (step % ITEMS_PER_MODAL == 0) {
             softAssert.assertTrue(menuPage.getLuckyDayComponent().isDisplayed(),
                     "LuckyDay Modal should appear after adding " + step + " items.");
 
-            if (step == 3) {
+            if (step / ITEMS_PER_MODAL % 2 == 0) {
                 menuPage.getLuckyDayComponent().clickSkip();
-            } else if (step == 6) {
+            } else {
                 menuPage.getLuckyDayComponent().clickYes();
-            } else if (step == 9) {
-                softAssert.assertTrue(menuPage.getLuckyDayComponent().isDisplayed(),
-                        "LuckyDay Modal should appear after adding " + step + " items, but no action should be taken.");
             }
         }
 
         softAssert.assertTrue(menuPage.getCardByName(drinkName) != null,
                 "The " + drinkName + " should be added to the cart.");
-
         softAssert.assertAll();
     }
 }
