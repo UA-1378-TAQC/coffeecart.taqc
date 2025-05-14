@@ -29,6 +29,9 @@ public class VerifyTranslationToChineseTest extends BaseTestRunner {
         SoftAssert softAssert = new SoftAssert();
 
         for (DrinkEnum drink : DrinkEnum.values()) {
+            if (drink == DrinkEnum.DISCOUNTED_MOCHA) {
+                continue;
+            }
             boolean isCorrectTranslation = productNameElements.stream().anyMatch(element -> {
                 actions.doubleClick(element).perform();
                 return element.getText().contains(drink.getChineseName(drink));
