@@ -17,7 +17,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class TestName extends BaseTestRunner{
-    private static final String DRINK = DrinkEnum.ESPRESSO.getRecipe().getName();
+    // private static final String DRINK = DrinkEnum.ESPRESSO.getRecipe().getName();
+    private static final String DRINK =  DrinkEnum.ESPRESSO.getRecipe().getName();
 
     @Test
     @Description("Verify error handling when invalid data is entered in the Name field.")
