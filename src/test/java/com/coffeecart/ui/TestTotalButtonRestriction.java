@@ -17,10 +17,10 @@ public class TestTotalButtonRestriction extends BaseTestRunner {
     @Issue("25")
     @Owner("Nazar Tarasiuk")
     public void TestTotalButtonRestrictionWithEmptyCart(){
-        var hoverMenu = new MenuPage(driver).getButtonElement().hoverTotalButton();
+        var hoverMenu = new MenuPage(driver).getButtonElement().tryHover();
         Assert.assertNull(hoverMenu, "Total button is hover able when cart is empty");
 
-        var clickMenu = new MenuPage(driver).goToCartPage().clickOnTotalButton();
+        var clickMenu = new MenuPage(driver).goToCartPage().getTotalButton().tryClick();
         Assert.assertNull(clickMenu, "Total button is visible when cart is empty");
 
         var emptyText = new MenuPage(driver).goToCartPage().getEmptyCartMessage().getText();
