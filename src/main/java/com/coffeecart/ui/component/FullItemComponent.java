@@ -3,10 +3,14 @@ package com.coffeecart.ui.component;
 import com.coffeecart.ui.page.CartPage;
 import io.qameta.allure.Step;
 import lombok.Getter;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.NoSuchElementException;
+
 
 import java.util.Arrays;
 
@@ -105,4 +109,14 @@ public class FullItemComponent extends BaseComponent{
         }
         return new CartPage(driver);
     }
+
+    @Step("Checks it '+' is enabled")
+    public boolean plusButtonIsEnabled() {
+    try {
+        WebElement plusButton = rootElement.findElement(By.className("plus")); 
+        return plusButton.isEnabled();
+    } catch (NoSuchElementException e) {
+        return false;
+    }
+}
 }
