@@ -54,7 +54,28 @@ public class TotalButtonElement extends BaseElement {
     public boolean isDisplayed() {
         return totalButton.isDisplayed();
     }
+
     public void hover() {
         actions.moveToElement(totalButton).perform();
+    }
+
+    public CartComponent tryHover() {
+        try {
+            actions.moveToElement(totalButton).perform();
+            cartComponentRoot.isDisplayed();
+        } catch(NoSuchElementException exception){
+            return null;
+        }
+        return new CartComponent(driver, cartComponentRoot);
+    }
+
+    public PaymentDetailModal tryClick() {
+        try {
+            totalButton.click();
+            modalElement.isDisplayed();
+        } catch(NoSuchElementException exception){
+            return null;
+        }
+        return new PaymentDetailModal(driver, modalElement);
     }
 }
