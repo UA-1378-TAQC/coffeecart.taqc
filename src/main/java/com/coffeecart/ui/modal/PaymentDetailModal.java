@@ -4,6 +4,8 @@ import com.coffeecart.ui.page.CartPage;
 import com.coffeecart.ui.page.MenuPage;
 import io.qameta.allure.Step;
 import lombok.Getter;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -128,4 +130,17 @@ public class PaymentDetailModal extends BaseModal {
         return inputEmail.getDomProperty("value");
     }
 
+    public boolean isNameInputValid() {
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    return (Boolean) js.executeScript("return arguments[0].checkValidity();", inputName);
+}
+
+    public String getNameValidationMessage() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return (String) js.executeScript("return arguments[0].validationMessage;", inputName);
+    }
+
+    public boolean isModalVisible() {
+        return paymentModal.isDisplayed();
+    }
 }

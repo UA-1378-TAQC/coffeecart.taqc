@@ -1,10 +1,10 @@
 package com.coffeecart.ui.testrunners;
 
-import com.coffeecart.utils.LocalStorageJS;
-import com.coffeecart.utils.TestValueProvider;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Attachment;
-import io.qameta.allure.Step;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.time.Duration;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -16,10 +16,12 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.time.Duration;
+import com.coffeecart.utils.LocalStorageJS;
+import com.coffeecart.utils.TestValueProvider;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 
 
 public class BaseTestRunner {
@@ -51,7 +53,10 @@ public class BaseTestRunner {
             options.addArguments("--user-data-dir=" + userDataDir);
         }
 
-//        options.addArguments(" --profile-directory=Default");
+        String lang = System.getProperty("chrome.options", "--lang=en");
+        if (lang != null && !lang.isEmpty()) {
+            options.addArguments(lang);
+        }
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
@@ -59,6 +64,8 @@ public class BaseTestRunner {
 
         localStorageJS = new LocalStorageJS(driver);
     }
+
+
 
     @BeforeClass
     public void beforeClass() {
@@ -104,4 +111,6 @@ public class BaseTestRunner {
         }
         return result;
     }
+
+    
 }
