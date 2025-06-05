@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import io.qameta.allure.Step;
 
 public class TotalButtonElement extends BaseElement {
 
@@ -39,6 +40,7 @@ public class TotalButtonElement extends BaseElement {
         return new PaymentDetailModal(driver, modalElement);
     }
 
+    @Step("Count cart")
     public double getMoneyCounter() {
         return Double.parseDouble(totalButton.getText().replaceAll("[^\\d.]", ""));
     }

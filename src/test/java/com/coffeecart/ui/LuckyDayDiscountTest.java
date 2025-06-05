@@ -20,7 +20,7 @@ public class LuckyDayDiscountTest extends BaseTestRunner {
                 {DrinkEnum.getName(DrinkEnum.MOCHA), 4},
                 {DrinkEnum.getName(DrinkEnum.FLAT_WHITE), 5},
                 {DrinkEnum.getName(DrinkEnum.AMERICANO), 6},
-                {DrinkEnum.getName(DrinkEnum.CAFFE_LATTE), 7},
+                {DrinkEnum.getName(DrinkEnum.CAFE_LATTE), 7},
                 {DrinkEnum.getName(DrinkEnum.ESPRESSO_CON_PANNA), 8},
                 {DrinkEnum.getName(DrinkEnum.CAFE_BREVE), 9},
         };

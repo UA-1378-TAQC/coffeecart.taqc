@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
+import io.qameta.allure.Step;
 
 public class ShortItemComponent extends BaseComponent{
     @Getter
@@ -31,6 +32,7 @@ public class ShortItemComponent extends BaseComponent{
         return spanName.getText();
     }
 
+    @Step("Count")
     public int getCount(){
         return Integer.parseInt(spanCount.getText().replaceAll("\\D",""));
     }
@@ -44,6 +46,19 @@ public class ShortItemComponent extends BaseComponent{
     public ShortItemComponent clickMinus(){
         waitUntilElementClickable(buttonMinus);
         buttonMinus.click();
+        return this;
+    }
+
+    @Step("'+' button is enabled")
+    public boolean plusButtonIsEnabled() {
+        return buttonPlus.isEnabled();
+    }
+
+    @Step("Click on '+' button")
+    public ShortItemComponent clickOnAddButton() {
+        if (plusButtonIsEnabled()) {
+            buttonPlus.click();
+        }
         return this;
     }
 }

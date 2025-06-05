@@ -6,6 +6,10 @@ import com.coffeecart.ui.component.HeaderComponent;
 import com.coffeecart.ui.page.CartPage;
 import com.coffeecart.ui.page.MenuPage;
 import com.coffeecart.ui.testrunners.BaseTestRunner;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -13,6 +17,10 @@ import java.util.Optional;
 
 public class IncreaseItemsNumberInCartTest extends BaseTestRunner {
     @Test
+    @Description("Verify the correctness of increasing the number of items on the Cart page")
+    @Feature("Verify the correctness of increasing the number of items on the Cart page")
+    @Issue("16")
+    @Owner("Dmytro Zubenko")
     public void testIncreaseItemsNumberInCart() {
         MenuPage menuPage = new MenuPage(driver);
 
