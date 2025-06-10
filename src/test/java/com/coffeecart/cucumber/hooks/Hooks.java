@@ -1,6 +1,8 @@
 package com.coffeecart.cucumber.hooks;
 
 import com.coffeecart.utils.TestValueProvider;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
@@ -34,7 +36,7 @@ public class Hooks {
     @Getter
     private SoftAssert softAssert;
 
-    @BeforeAll
+    @Before
     public void driverSetup() {
         if (driver == null) {
             initDriver();
@@ -53,7 +55,7 @@ public class Hooks {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(testValueProvider.getImplicitlyWait()));
     }
 
-    @AfterClass
+    @After
     public void tearDown() {
         saveImageAttach("PICTURE Test Name");
         if (driver != null) {
