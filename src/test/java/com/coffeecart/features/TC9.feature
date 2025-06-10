@@ -1,4 +1,4 @@
-Feature: invalid data is entered in the Name field
+Feature: Invalid data is entered in the Name field
     Verify that the payment form correctly handles invalid name inputs with appropriate error messages.
 
     Background:
@@ -13,4 +13,4 @@ Feature: invalid data is entered in the Name field
             | Email     |  |
         When I enter valid email
         Then I check that payment modal is visible
-        Then I check that validation message appear
+        And I check that validation message appear
