@@ -123,11 +123,21 @@ public class PaymentDetailModal extends BaseModal {
     }
 
     public String getInputNameValue() {
-        return inputName.getDomProperty("value");
+        if((inputName.getDomProperty("value")).length() == 0){
+            return null;
+        }
+        else{
+            return inputName.getDomProperty("value");
+        }
     }
 
     public String getInputEmailValue() {
-        return inputEmail.getDomProperty("value");
+        if((inputEmail.getDomProperty("value")).length() == 0){
+            return null;
+        }
+        else{
+            return inputEmail.getDomProperty("value");
+        }
     }
 
     public boolean isNameInputValid() {
