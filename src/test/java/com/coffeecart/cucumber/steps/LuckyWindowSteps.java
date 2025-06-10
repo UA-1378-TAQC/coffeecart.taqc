@@ -2,7 +2,6 @@ package com.coffeecart.cucumber.steps;
 
 import com.coffeecart.cucumber.hooks.Hooks;
 import com.coffeecart.data.DrinkEnum;
-import com.coffeecart.ui.component.LuckyDayComponent;
 import com.coffeecart.ui.component.ShortItemComponent;
 import com.coffeecart.ui.page.MenuPage;
 import io.cucumber.datatable.DataTable;
@@ -18,9 +17,6 @@ import java.util.stream.IntStream;
 public class LuckyWindowSteps {
     private final Hooks hooks;
     private MenuPage menuPage;
-    private LuckyDayComponent luckyDayComponent;
-    private PaymentModalSteps paymentModalSteps;
-    private ShortItemComponent shortItemComponent;
     private SoftAssert softAssert;
 
     public LuckyWindowSteps(Hooks hooks) {
