@@ -17,7 +17,7 @@ public class TotalButtonElement extends BaseElement {
     WebElement totalButton;
 
     @Getter
-    @FindBy(xpath = "//ul[@class='cart-preview show']")
+    @FindBy(xpath = "//ul[contains(@class, 'cart-preview')]")
     WebElement cartComponentRoot;
 
     @Getter
@@ -57,4 +57,9 @@ public class TotalButtonElement extends BaseElement {
     public void hover() {
         actions.moveToElement(totalButton).perform();
     }
+
+    public void unhover() {
+        Actions actions = new Actions(driver);
+        WebElement body = driver.findElement(By.tagName("body"));
+        actions.moveToElement(body, 0, 0).perform();    }
 }
