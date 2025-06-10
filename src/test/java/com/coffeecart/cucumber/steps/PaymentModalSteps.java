@@ -29,7 +29,6 @@ public class PaymentModalSteps {
     @Given("I am on the coffee cart menu page")
     public void iAmOnTheCoffeeCartMenuPage() {
         menuPage = new MenuPage(hooks.getDriver());
-        softAssert = hooks.getSoftAssert();
     }
 
     @When("I select an Espresso drink")
