@@ -1,11 +1,14 @@
 package com.coffeecart.cucumber.steps;
 
-import com.coffeecart.data.DrinkEnum;
 import com.coffeecart.cucumber.hooks.Hooks;
+import com.coffeecart.data.DrinkEnum;
+import com.coffeecart.ui.component.LuckyDayComponent;
+import com.coffeecart.ui.component.ShortItemComponent;
 import com.coffeecart.ui.modal.PaymentDetailModal;
 import com.coffeecart.ui.modal.SuccessfulPopUp;
 import com.coffeecart.ui.page.CartPage;
 import com.coffeecart.ui.page.MenuPage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -24,6 +27,7 @@ public class PaymentModalSteps {
 
     public PaymentModalSteps(Hooks hooks) {
         this.hooks = hooks;
+        this.softAssert = hooks.getSoftAssert();
     }
 
     @Given("I am on the coffee cart menu page")
