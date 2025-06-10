@@ -12,11 +12,11 @@ Feature: Payment Form Validation
     And I proceed to the payment modal
     Then I verify all payment modal texts match expected:
       | Field            | Expected Text                          |
-      | Header          | Payment Details                        |
-      | Paragraph       | Please enter your payment details       |
+      | Header          | Payment details                        |
+      | Paragraph       | We will send you a payment link via email.       |
       | Name Label      | Name                                    |
       | Email Label     | Email                                   |
-      | Checkbox Label  | I agree to the terms and conditions     |
+      | Checkbox Label  | I would like to receive order updates and promotional messages.     |
       | Submit Button   | Submit                                  |
     And I verify checkbox is unchecked by default
     And I verify payment modal has correct background color
