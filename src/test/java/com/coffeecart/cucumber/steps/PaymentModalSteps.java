@@ -83,7 +83,6 @@ public class PaymentModalSteps {
         softAssert.assertEquals(successPopup.getSuccessTitleText(), expectedMessage, "Success message text mismatch");
     }
 
-<<<<<<< HEAD
     @Then("I verify emptiness of 'Name' and 'Password' fields:")
     public void iVerifyEmptyFields(Map<String, String> expectedTexts){
         softAssert.assertEquals(paymentModal.getInputNameValue(), expectedTexts.get("Name"), "Name field is filled");
@@ -103,7 +102,8 @@ public class PaymentModalSteps {
     @Then("I check that payment modal is visible")
     public void paymentModalIsVisible(){
         softAssert.assertTrue(paymentModal.isModalVisible(), "Modal should still be visible after invalid input");
-=======
+    }
+
     @Given("I have selected an Espresso drink")
     public void iHaveSelectedAnEspressoDrink() {
         menuPage.clickDrink(DrinkEnum.ESPRESSO.getRecipe().getName());
@@ -181,6 +181,5 @@ public class PaymentModalSteps {
     public void theCheckboxShouldBeUnchecked() {
         softAssert.assertFalse(paymentModal.isCheckboxMarked(),
                 "Checkbox should be unchecked after navigation");
->>>>>>> 2ecca7f4dac0db12a701812ed578b56e157396fb
     }
 }
