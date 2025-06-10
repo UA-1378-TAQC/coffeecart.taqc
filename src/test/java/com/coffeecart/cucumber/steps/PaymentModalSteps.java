@@ -81,4 +81,25 @@ public class PaymentModalSteps {
     public void iVerifySuccessMessageIs(String expectedMessage) {
         softAssert.assertEquals(successPopup.getSuccessTitleText(), expectedMessage, "Success message text mismatch");
     }
+
+    @Then("I verify emptiness of 'Name' and 'Password' fields:")
+    public void iVerifyEmptyFields(Map<String, String> expectedTexts){
+        softAssert.assertEquals(paymentModal.getInputNameValue(), expectedTexts.get("Name"), "Name field is filled");
+        softAssert.assertEquals(paymentModal.getInputEmailValue(), expectedTexts.get("Email"), "Email field is filled");
+    }
+
+    @When("I enter valid email")
+    public void iEnterValidEmail(){
+        paymentModal.enterEmail(hooks.getTestValueProvider().getUserEmail());
+    }
+
+    @Then("I check that validation message appear")
+    public void iCheckInvalidName(){
+        softAssert.assertEquals(paymentModal.getNameValidationMessage(), "Please fill out this field.");
+    }
+
+    @Then("I check that payment modal is visible")
+    public void paymentModalIsVisible(){
+        softAssert.assertTrue(paymentModal.isModalVisible(), "Modal should still be visible after invalid input");
+    }
 }
