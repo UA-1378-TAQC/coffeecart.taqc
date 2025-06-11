@@ -3,6 +3,7 @@ package com.coffeecart.cucumber.steps;
 import com.coffeecart.cucumber.hooks.Hooks;
 import com.coffeecart.data.DrinkEnum;
 import com.coffeecart.ui.component.CartComponent;
+import com.coffeecart.ui.component.FullItemComponent;
 import com.coffeecart.ui.component.LuckyDayComponent;
 import com.coffeecart.ui.component.ShortItemComponent;
 import com.coffeecart.ui.modal.PaymentDetailModal;
@@ -27,6 +28,7 @@ public class LuckyWindowSteps {
     private final Hooks hooks;
     private static final String DISCOUNTED_MOCHA = "(Discounted) Mocha";
     private MenuPage menuPage;
+    private CartPage cartPage;
     private SoftAssert softAssert;
 
     public LuckyWindowSteps(Hooks hooks) {
@@ -176,6 +178,54 @@ public class LuckyWindowSteps {
         double totalBefore = totalButton.getMoneyCounter();
         double totalAfter = totalButton.getMoneyCounter();
         softAssert.assertEquals(totalAfter, totalBefore, "Total sum should not increase");
+    }
+
+    @And("I verify cart counter shows {string} items")
+    public void iVerifyCartCounterShowsItems(String expectedCount) {
+        int actualCount = menuPage.getHeader().getTotalNumberItemsFromCartLink();
+        softAssert.assertEquals(actualCount, Integer.parseInt(expectedCount),
+                String.format("Cart counter should show %s items but shows %d", expectedCount, actualCount));
+    }
+
+    @And("I go to cart page")
+    public void iGoToCartPage() {
+        cartPage = menuPage.goToCartPage();
+    }
+
+    @And("I verify {string} is present in cart with quantity {string}")
+    public void iVerifyItemIsPresentInCartWithQuantity(String itemName, String expectedQuantity) {
+        FullItemComponent item = cartPage.getFullItemByName(itemName);
+        softAssert.assertNotNull(item, itemName + " should be present in cart");
+        softAssert.assertEquals(item.getCount(), Integer.parseInt(expectedQuantity),
+                String.format("%s quantity should be %s but was %d",
+                        itemName, expectedQuantity, item.getCount()));
+    }
+
+    @When("I remove all non-discounted items from cart")
+    public void iRemoveAllNonDiscountedItemsFromCart() {
+        for (FullItemComponent item : cartPage.getFullItems()) {
+            if (!item.getItemLabelString().equals(DISCOUNTED_MOCHA)) {
+                cartPage = item.clickOnDeleteButton();
+            }
+        }
+    }
+
+    @Then("I verify {string} is not present in cart")
+    public void iVerifyItemIsNotPresentInCart(String itemName) {
+        FullItemComponent item = cartPage.getFullItemByName(itemName);
+        softAssert.assertNull(item, itemName + " should not be present in cart");
+    }
+
+    @And("I verify total button is not displayed")
+    public void iVerifyTotalButtonIsNotDisplayed() {
+        softAssert.assertFalse(cartPage.getTotalButton().isDisplayed(),
+                "Total button should not be displayed when cart is empty");
+    }
+
+    @And("I verify empty cart message is displayed")
+    public void iVerifyEmptyCartMessageIsDisplayed() {
+        softAssert.assertTrue(cartPage.emptyCartMessageIsDisplayed(),
+                "Empty cart message should be displayed");
     }
 
 }
