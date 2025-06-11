@@ -57,9 +57,6 @@ public class Hooks {
         options.addArguments("--lang=en");
         options.addArguments("--accept-lang=en");
 
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-extensions");
-
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(testValueProvider.getImplicitlyWait()));
