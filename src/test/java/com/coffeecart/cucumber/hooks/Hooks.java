@@ -48,9 +48,19 @@ public class Hooks {
     }
 
     public void initDriver() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().driverVersion("your.chrome.version.here").setup();
 
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-extensions");
+
+        options.addArguments("--lang=en");
+        options.addArguments("--accept-lang=en");
+
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-extensions");
+
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(testValueProvider.getImplicitlyWait()));
     }
