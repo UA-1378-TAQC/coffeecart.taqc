@@ -6,16 +6,19 @@ import com.coffeecart.ui.elements.TotalButtonElement;
 import com.coffeecart.ui.page.MenuPage;
 import io.cucumber.java.en.*;
 import org.testng.asserts.SoftAssert;
+
 public class AddCoffeeUpdatingCounterSteps {
     private final Hooks hooks;
-    private  MenuPage menuPage;
+    private MenuPage menuPage;
     private HeaderComponent header;
     private SoftAssert softAssert;
     private TotalButtonElement totalButtonElement;
     private int initialCounter = 0;
     private int expectedCounter = 0;
 
-    public AddCoffeeUpdatingCounterSteps(Hooks hooks) { this.hooks = hooks; }
+    public AddCoffeeUpdatingCounterSteps(Hooks hooks) {
+        this.hooks = hooks;
+    }
 
     @Given("Coffee cart menu page is opened")
     public void CoffeeCartMenuPageIsOpened() {
