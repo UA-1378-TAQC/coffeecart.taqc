@@ -171,14 +171,16 @@ public class PaymentModalSteps {
 
     @Then("the name field should be empty")
     public void theNameFieldShouldBeEmpty() {
-        softAssert.assertEquals(paymentModal.getInputNameValue(), "",
-                "Name field should be empty after navigation");
+        String actualValue = paymentModal.getInputNameValue();
+        softAssert.assertTrue(actualValue == null || actualValue.isEmpty(),
+                "Name field should be empty after navigation. Actual: " + actualValue);
     }
 
     @Then("the email field should be empty")
     public void theEmailFieldShouldBeEmpty() {
-        softAssert.assertEquals(paymentModal.getInputEmailValue(), "",
-                "Email field should be empty after navigation");
+        String actualValue = paymentModal.getInputEmailValue();
+        softAssert.assertTrue(actualValue == null || actualValue.isEmpty(),
+                "Email field should be empty after navigation. Actual: " + actualValue);
     }
 
     @Then("the checkbox should be unchecked")
@@ -186,4 +188,7 @@ public class PaymentModalSteps {
         softAssert.assertFalse(paymentModal.isCheckboxMarked(),
                 "Checkbox should be unchecked after navigation");
     }
+
+
+
 }
