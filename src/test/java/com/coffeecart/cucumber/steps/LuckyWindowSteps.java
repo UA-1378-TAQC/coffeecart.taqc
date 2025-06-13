@@ -201,6 +201,16 @@ public class LuckyWindowSteps {
                         itemName, expectedQuantity, item.getCount()));
     }
 
+
+    @When("I minus all non-discounted items from cart")
+    public void iMinusAllNonDiscountedItemsFromCart() {
+        for (FullItemComponent item : cartPage.getFullItems()) {
+            if (!item.getItemLabelString().equals(DISCOUNTED_MOCHA)) {
+                cartPage = item.clickOnRemoveButton();
+            }
+        }
+    }
+
     @When("I remove all non-discounted items from cart")
     public void iRemoveAllNonDiscountedItemsFromCart() {
         for (FullItemComponent item : cartPage.getFullItems()) {
