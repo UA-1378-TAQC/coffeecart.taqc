@@ -63,8 +63,8 @@ jobs:
           sleep 3 #
       - name: Build and run tests with Maven
         run: |
-          # Pass system properties to fix Chrome issues
           mvn clean test \
+            -DsuiteXmlFile=src/test/resources/testng.xml \
             -Dwebdriver.chrome.driver=$(which chromedriver) \
             -Dchrome.options="--no-sandbox,--headless=new,--disable-gpu,--disable-dev-shm-usage,--remote-allow-origins=*" \
             -Duser.data.dir=/tmp/chrome-data-$(date +%s)
