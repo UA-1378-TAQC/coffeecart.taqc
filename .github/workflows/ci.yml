@@ -1,4 +1,4 @@
-name: Java CI with Allure Report
+name: Java CI with Allure Report and Cucumber Tests
 on:
   push:
     branches: [main, dev]
@@ -30,8 +30,7 @@ jobs:
 
   run-tests:
     needs: build
-    if: github.ref == 'refs/heads/main'
-      && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     runs-on: ubuntu-latest
 
@@ -61,10 +60,12 @@ jobs:
         run: |
           # Start chromedriver in the background
           chromedriver --port=4444 &
-          sleep 3 #
-      - name: Build and run tests with Maven
+          sleep 3 # Give chromedriver time to initialize
+      - name: Build and run all tests (including Cucumber) with Maven
         run: |
-          # Pass system properties to fix Chrome issues
+          # Pass system properties to fix Chrome issues.
+          # Maven's 'test' phase will automatically discover and run
+          # JUnit/TestNG tests, including Cucumber test runners if configured in pom.xml.
           mvn clean test \
             -Dwebdriver.chrome.driver=$(which chromedriver) \
             -Dchrome.options="--no-sandbox,--headless=new,--disable-gpu,--disable-dev-shm-usage,--remote-allow-origins=*" \
