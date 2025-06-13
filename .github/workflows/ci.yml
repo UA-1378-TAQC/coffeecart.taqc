@@ -66,10 +66,10 @@ jobs:
           # Pass system properties to fix Chrome issues.
           # Maven's 'test' phase will automatically discover and run
           # JUnit/TestNG tests, including Cucumber test runners if configured in pom.xml.
+          # Removed -Duser.data.dir to let Chrome manage temporary profiles automatically.
           mvn clean test \
             -Dwebdriver.chrome.driver=$(which chromedriver) \
-            -Dchrome.options="--no-sandbox,--headless=new,--disable-gpu,--disable-dev-shm-usage,--remote-allow-origins=*" \
-            -Duser.data.dir=/tmp/chrome-data-$(date +%s)
+            -Dchrome.options="--no-sandbox,--headless=new,--disable-gpu,--disable-dev-shm-usage,--remote-allow-origins=*"
         continue-on-error: true
 
       - name: Get Allure history
