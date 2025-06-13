@@ -67,7 +67,6 @@ jobs:
             -DsuiteXmlFile=src/test/resources/testng.xml \
             -Dwebdriver.chrome.driver=$(which chromedriver) \
             -Dchrome.options="--no-sandbox,--headless=new,--disable-gpu,--disable-dev-shm-usage,--remote-allow-origins=*" \
-            -Duser.data.dir=/tmp/chrome-data-$(date +%s)
         continue-on-error: true
 
       - name: Get Allure history
