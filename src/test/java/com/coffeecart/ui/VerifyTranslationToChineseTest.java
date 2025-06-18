@@ -1,4 +1,4 @@
-package com.coffeecart.ui.VerifyTranslationToChinese;
+package com.coffeecart.ui;
 
 
 import com.coffeecart.data.DrinkEnum;

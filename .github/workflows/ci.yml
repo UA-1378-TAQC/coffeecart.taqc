@@ -1,4 +1,4 @@
-name: Java CI with Allure Report
+name: Java CI with Allure Report and Cucumber Tests
 on:
   push:
     branches: [main, dev]
