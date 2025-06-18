@@ -11,7 +11,6 @@ import org.testng.asserts.SoftAssert;
 
 
 public class PaymentModalClosingOnMenuPageTest extends BaseTestRunner {
-    private static final String DRINK = DrinkEnum.ESPRESSO.getRecipe().getName();
 
     @Test
     @Description("Verify that the Payment Details Modal retains pre-filled values after closing via the 'X' icon on the MenuPage")
@@ -22,7 +21,7 @@ public class PaymentModalClosingOnMenuPageTest extends BaseTestRunner {
         SoftAssert softAssert = new SoftAssert();
 
         PaymentDetailModal paymentModal = new MenuPage(driver)
-                .clickDrink(DRINK)
+                .clickDrink(DrinkEnum.ESPRESSO.getRecipe().getName())
                 .clickTotalButton()
                 .enterName(testValueProvider.getUserName())
                 .enterEmail(testValueProvider.getUserEmail())

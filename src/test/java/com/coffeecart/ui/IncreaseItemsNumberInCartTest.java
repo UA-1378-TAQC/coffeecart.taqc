@@ -1,4 +1,4 @@
-package com.coffeecart.ui.increasingItemsNumber;
+package com.coffeecart.ui;
 
 import com.coffeecart.data.DrinkEnum;
 import com.coffeecart.ui.component.FullItemComponent;
