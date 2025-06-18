@@ -30,8 +30,7 @@ jobs:
 
   run-tests:
     needs: build
-    if: github.ref == 'refs/heads/main'
-      && github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     runs-on: ubuntu-latest
 
@@ -64,11 +63,10 @@ jobs:
           sleep 3 #
       - name: Build and run tests with Maven
         run: |
-          # Pass system properties to fix Chrome issues
           mvn clean test \
+            -DsuiteXmlFile=src/test/resources/testng.xml \
             -Dwebdriver.chrome.driver=$(which chromedriver) \
             -Dchrome.options="--no-sandbox,--headless=new,--disable-gpu,--disable-dev-shm-usage,--remote-allow-origins=*" \
-            -Duser.data.dir=/tmp/chrome-data-$(date +%s)
         continue-on-error: true
 
       - name: Get Allure history
