@@ -5,7 +5,8 @@ Feature: Pop-up Cart Behavior
   So that I can modify drink quantities and see correct total prices
   @issue-14 @owner-Khrystyna-Martynova
   Scenario Outline: Verify cart pop-up functionality for a drink from the menu
-    Given I am on the menu page
+    Given Coffee cart menu page is opened
+    And I note the initial cart counter value
     When I click on the drink "<drinkName>"
     Then the cart pop-up should display the item "<drinkName>" with quantity 1
     When I increase the quantity of "<drinkName>" by clicking "+"
