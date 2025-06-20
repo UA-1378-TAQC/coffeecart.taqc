@@ -45,7 +45,6 @@ public class VerificationOfPopUpCartFunctioningTest extends BaseTestRunner {
 
         item.clickMinus();
         softAssert.assertEquals(totalButtonElement.getTotalButton().getText(), "Total: $0.00", "Total should be $0 after cart is empty");
-
         softAssert.assertAll();
     }
 }
