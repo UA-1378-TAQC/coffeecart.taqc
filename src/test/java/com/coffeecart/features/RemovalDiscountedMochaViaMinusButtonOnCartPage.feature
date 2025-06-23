@@ -18,3 +18,4 @@ Feature: Discounted Mocha removal via “-” button
     And   I verify total button is not displayed
     And   I verify empty cart message is displayed
     And   I verify cart counter shows "0" items
+
