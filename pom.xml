@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <selenium-java.version>4.30.0</selenium-java.version>
+        <selenium-java.version>4.33.0</selenium-java.version>
         <lombok.version>1.18.36</lombok.version>
         <testng.version>7.10.2</testng.version>
         <webdrivermanager.version>6.1.0</webdrivermanager.version>
