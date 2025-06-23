@@ -1,0 +1,26 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"    Verify '+' button is disabled for '(Discounted) Mocha' in the Cart Modal ","181","Verify '+' button disability in the Cart Modal for 'Discounted' Mocha","","Mon Jun 23 12:14:35 GMT 2025","skipped","Mon Jun 23 12:14:36 GMT 2025","","'+' button is disabled for 'Discounted' Mocha in the Cart Modal","Verify '+' button disability in the Cart Modal for 'Discounted' Mocha",""
+"    Verify that the payment form correctly handles invalid name inputs with appropriate error messages.","182","Verify error handling when invalid data is entered in the Name field","","Mon Jun 23 12:14:36 GMT 2025","skipped","Mon Jun 23 12:14:36 GMT 2025","","Invalid data is entered in the Name field","Verify error handling when invalid data is entered in the Name field",""
+"  As a user
+  I want the (Discounted) Mocha to disappear
+  When I remove the other cups with the minus button
+  So that I understand the Lucky-Day offer rules","219","(Discounted) Mocha disappears after “–”-removal of the other items","","Mon Jun 23 12:14:35 GMT 2025","skipped","Mon Jun 23 12:14:35 GMT 2025","","Discounted Mocha removal via “-” button","(Discounted) Mocha disappears after “–”-removal of the other items",""
+"","202","“No” button closes the modal and leaves the cart empty","","Mon Jun 23 12:14:34 GMT 2025","skipped","Mon Jun 23 12:14:34 GMT 2025","","Add-to-cart modal behaviour","“No” button closes the modal and leaves the cart empty",""
+"  As a user
+  I want to verify payment modal behavior when closing
+  So that I understand how form data is retained","183","Verify that the Payment Details Modal retains pre-filled values after closing via the 'X' icon on the MenuPage","","Mon Jun 23 12:14:35 GMT 2025","skipped","Mon Jun 23 12:14:35 GMT 2025","","Closing Payment Details Modal","Verify that the Payment Details Modal retains pre-filled values after closing via the 'X' icon on the MenuPage",""
+"  As a user
+  I want to reject the ""Lucky Day"" offer
+  So that my cart does not include any unwanted items","205","Verify rejecting the ""extra cup of Mocha"" keeps cart unchanged","","Mon Jun 23 12:14:34 GMT 2025","skipped","Mon Jun 23 12:14:34 GMT 2025","","Lucky Day Offer Rejection","Verify rejecting the ""extra cup of Mocha"" keeps cart unchanged",""
+"","238","Add-to-cart modal reappears after page refresh","","Mon Jun 23 12:14:34 GMT 2025","skipped","Mon Jun 23 12:14:35 GMT 2025","","Add-to-cart modal behaviour","Add-to-cart modal reappears after page refresh",""
+"  As a user
+  I want to increase the quantity of an item in my cart
+  So that I can easily adjust the number of items I want to purchase","197","Verify increasing item quantity on Cart page","","Mon Jun 23 12:14:34 GMT 2025","skipped","Mon Jun 23 12:14:34 GMT 2025","","Increasing Items Number in Cart","Verify increasing item quantity on Cart page",""
+"","4357","Add multiple drinks to the cart and verify counter","","Mon Jun 23 12:14:29 GMT 2025","skipped","Mon Jun 23 12:14:33 GMT 2025","","Verification that adding multiple coffee cups updates the header counter","Add multiple drinks to the cart and verify counter",""
+"","178","Test ""Total"" button on Menu and Cart pages","","Mon Jun 23 12:14:36 GMT 2025","skipped","Mon Jun 23 12:14:36 GMT 2025","","Verification of the functioning oh the ""Total"" button functionality on ""Menu"" and ""Cart"" pages","Test ""Total"" button on Menu and Cart pages",""
+"  As a user
+  I want to submit payment form with valid data
+  So that I can complete my purchase successfully","188","Verify valid name/email submission shows confirmation message","","Mon Jun 23 12:14:35 GMT 2025","skipped","Mon Jun 23 12:14:35 GMT 2025","","Payment Form Validation","Verify valid name/email submission shows confirmation message",""
+"  As a user
+  I want to verify discounted mocha behavior when removing other items
+  So that I understand the special offer rules","173","Verify Discounted Mocha disappears after removing other items","","Mon Jun 23 12:14:35 GMT 2025","skipped","Mon Jun 23 12:14:35 GMT 2025","","Discounted Mocha Removal","Verify Discounted Mocha disappears after removing other items",""
