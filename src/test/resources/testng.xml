@@ -1,14 +1,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="AllTests" verbose="1" parallel="false">
-    <test name="RegularTests">
-        <packages>
-            <package name="com.coffeecart.ui"/>
-        </packages>
-    </test>
-
     <test name="CucumberFeatures">
         <classes>
             <class name="com.coffeecart.cucumber.runners.CucumberTestRunner"/>
         </classes>
+    </test>
+
+    <test name="RegularTests">
+        <packages>
+            <package name="com.coffeecart.ui"/>
+        </packages>
     </test>
 </suite>
