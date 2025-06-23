@@ -41,21 +41,31 @@ public class Hooks {
         if (driver == null) {
             initDriver();
         }
-        logger.info("WebDriver started");
+
 
         softAssert = new SoftAssert();
         driver.get(testValueProvider.getBaseUIUrl());
     }
 
     public void initDriver() {
-        WebDriverManager.chromedriver().driverVersion("your.chrome.version.here").setup();
-
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-extensions");
 
-        options.addArguments("--lang=en");
-        options.addArguments("--accept-lang=en");
+        String chromeOptionsArg = System.getProperty("chrome.options", "");
+        if (!chromeOptionsArg.isEmpty()) {
+            for (String option : chromeOptionsArg.split(",")) {
+                options.addArguments(option);
+            }
+        }
+
+        String userDataDir = System.getProperty("user.data.dir");
+        if (userDataDir != null && !userDataDir.isEmpty()) {
+            options.addArguments("--user-data-dir=" + userDataDir);
+        }
+
+        String lang = System.getProperty("chrome.options", "--lang=en");
+        if (lang != null && !lang.isEmpty()) {
+            options.addArguments(lang);
+        }
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
