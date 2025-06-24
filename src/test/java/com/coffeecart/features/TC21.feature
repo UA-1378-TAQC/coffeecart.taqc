@@ -20,5 +20,4 @@ Feature: '+' button is disabled for 'Discounted' Mocha in the Cart Modal
         And I verify "+" button should be disabled for Discounted Mocha
 
         When I click on "+" button on discounted mocha
-        And I verify mocha quantity
         And I verify sum

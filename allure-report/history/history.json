@@ -1,0 +1,1 @@
+{"1017ffa549b0ab1e9b99f37206be8675":{"statistic":{"failed":0,"broken":1,"skipped":0,"passed":0,"unknown":0,"total":1},"items":[{"uid":"536306eee36c23ea","status":"broken","statusDetails":"Cannot invoke \"com.coffeecart.ui.page.MenuPage.clickDrink(String)\" because \"this.menuPage\" is null","time":{"start":1749591652089,"stop":1749591655116,"duration":3027}}]}}
