@@ -66,7 +66,7 @@ jobs:
           mvn clean test \
             -DsuiteXmlFile=src/test/resources/testng.xml \
             -Dwebdriver.chrome.driver=$(which chromedriver) \
-            -Dchrome.options="--no-sandbox,--headless=new,--disable-gpu,--window-size=1920,1080,--disable-dev-shm-usage,--remote-allow-origins=*" \
+            -Dchrome.options="--no-sandbox,--headless=new,--disable-gpu,--window-size=1920,1080,--force-device-scale-factor=0.5,--disable-dev-shm-usage,--remote-allow-origins=*" \
         continue-on-error: true
 
       - name: Get Allure history
