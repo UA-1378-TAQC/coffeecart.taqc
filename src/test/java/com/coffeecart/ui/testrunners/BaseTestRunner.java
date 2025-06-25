@@ -57,6 +57,7 @@ public class BaseTestRunner {
         if (lang != null && !lang.isEmpty()) {
             options.addArguments(lang);
         }
+        
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();

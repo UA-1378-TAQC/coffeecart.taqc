@@ -105,75 +105,75 @@ public class LuckyWindowSteps {
     }
 
     @Then("I verify Lucky Day option appear")
-    public void iVerifyLuckyDayAppear(){
+    public void iVerifyLuckyDayAppear() {
         softAssert.assertTrue(menuPage.getLuckyDayModalRoot().isDisplayed(), "Lucky Day modal should be displayed");
     }
 
     @When("I click on \"Yes, of course!\" button")
-    public void iClickOnYesButtonInLuckyDay(){
+    public void iClickOnYesButtonInLuckyDay() {
         menuPage.getLuckyDayComponent().clickYes();
     }
 
     @When("I hover total button on menu page")
-    public void iHoverTotalButtonOnMenuPage(){
+    public void iHoverTotalButtonOnMenuPage() {
         menuPage.getButtonElement().hoverTotalButton();
     }
 
     @Then("I verify is dicounted mocha in cart")
-    public void iVerifyIsDiscountedMochaIn(){
+    public void iVerifyIsDiscountedMochaIn() {
         TotalButtonElement totalButton = menuPage.getButtonElement();
         CartComponent cartComponent = totalButton.hoverTotalButton();
 
         ShortItemComponent mochaItem = cartComponent.getShortItems().stream()
-            .filter(item -> item.getName().equals(DISCOUNTED_MOCHA))
-            .findFirst()
-            .orElseThrow(() -> new AssertionError("Discounted Mocha not found in cart preview"));
-        
+                .filter(item -> item.getName().equals(DISCOUNTED_MOCHA))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Discounted Mocha not found in cart preview"));
+
         softAssert.assertNotNull(mochaItem, "Discounted Mocha should be present in the cart");
         softAssert.assertEquals(mochaItem.getCount(), 1, "Initial quantity of Mocha should be 1");
     }
 
     @Then("I verify \"+\" button should be disabled for Discounted Mocha")
-    public void iVerifyPlusButton(){
+    public void iVerifyPlusButton() {
         TotalButtonElement totalButton = menuPage.getButtonElement();
         CartComponent cartComponent = totalButton.hoverTotalButton();
 
         ShortItemComponent mochaItem = cartComponent.getShortItems().stream()
-            .filter(item -> item.getName().equals(DISCOUNTED_MOCHA))
-            .findFirst()
-            .orElseThrow(() -> new AssertionError("Discounted Mocha not found in cart preview"));
-        
+                .filter(item -> item.getName().equals(DISCOUNTED_MOCHA))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Discounted Mocha not found in cart preview"));
+
         softAssert.assertTrue(mochaItem.plusButtonIsEnabled(), "'+' button should be disabled for Discounted Mocha");
     }
 
     @When("I click on \"+\" button on discounted mocha")
-    public void iClickPlusOnDiscountedMocha(){
+    public void iClickPlusOnDiscountedMocha() {
         TotalButtonElement totalButton = menuPage.getButtonElement();
         CartComponent cartComponent = totalButton.hoverTotalButton();
 
         ShortItemComponent mochaItem = cartComponent.getShortItems().stream()
-            .filter(item -> item.getName().equals(DISCOUNTED_MOCHA))
-            .findFirst()
-            .orElseThrow(() -> new AssertionError("Discounted Mocha not found in cart preview"));
-        
-        mochaItem.clickOnAddButton(); 
+                .filter(item -> item.getName().equals(DISCOUNTED_MOCHA))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Discounted Mocha not found in cart preview"));
+
+        mochaItem.clickOnAddButton();
     }
 
     @Then("I verify mocha quantity")
-    public void iVerifyAmountOfMoche(){
+    public void iVerifyAmountOfMoche() {
         TotalButtonElement totalButton = menuPage.getButtonElement();
         CartComponent cartComponent = totalButton.hoverTotalButton();
 
         ShortItemComponent mochaItem = cartComponent.getShortItems().stream()
-            .filter(item -> item.getName().equals(DISCOUNTED_MOCHA))
-            .findFirst()
-            .orElseThrow(() -> new AssertionError("Discounted Mocha not found in cart preview"));
-        
+                .filter(item -> item.getName().equals(DISCOUNTED_MOCHA))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Discounted Mocha not found in cart preview"));
+
         softAssert.assertEquals(mochaItem.getCount(), 2, "Mocha quantity should not increase after '+' click");
     }
 
     @Then("I verify sum")
-    public void iVerifyPrice(){
+    public void iVerifyPrice() {
         TotalButtonElement totalButton = menuPage.getButtonElement();
         double totalBefore = totalButton.getMoneyCounter();
         double totalAfter = totalButton.getMoneyCounter();
@@ -192,13 +192,27 @@ public class LuckyWindowSteps {
         cartPage = menuPage.goToCartPage();
     }
 
-    @And("I verify {string} is present in cart with quantity {string}")
-    public void iVerifyItemIsPresentInCartWithQuantity(String itemName, String expectedQuantity) {
-        FullItemComponent item = cartPage.getFullItemByName(itemName);
-        softAssert.assertNotNull(item, itemName + " should be present in cart");
-        softAssert.assertEquals(item.getCount(), Integer.parseInt(expectedQuantity),
-                String.format("%s quantity should be %s but was %d",
-                        itemName, expectedQuantity, item.getCount()));
+    @And("I verify discounted mocha is present in cart with quantity {int}")
+    public void iVerifyDiscountedMochaIsPresentInCartWithQuantity(int expectedQuantity) {
+        FullItemComponent mochaItem = cartPage.getFullItemByName(DISCOUNTED_MOCHA);
+
+        softAssert.assertNotNull(mochaItem, "Discounted Mocha should be present in the cart");
+        softAssert.assertEquals(mochaItem.getCount(), expectedQuantity,
+                String.format("Quantity of Discounted Mocha should be %d but was %d",
+                        expectedQuantity, mochaItem.getCount()));
+    }
+
+    @When("I minus all non-discounted items from cart")
+    public void iMinusAllNonDiscountedItemsFromCart() {
+        List<FullItemComponent> items = List.copyOf(cartPage.getFullItems());
+
+        for (FullItemComponent item : items) {
+            String name = item.getItemLabelString().trim();
+            if (!name.equals(DISCOUNTED_MOCHA)) {
+                int count = item.getCount();
+                cartPage = item.clickOnRemoveButton(count);
+            }
+        }
     }
 
     @When("I remove all non-discounted items from cart")
