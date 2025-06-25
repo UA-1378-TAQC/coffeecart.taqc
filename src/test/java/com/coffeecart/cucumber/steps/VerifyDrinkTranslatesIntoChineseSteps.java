@@ -23,11 +23,6 @@ public class VerifyDrinkTranslatesIntoChineseSteps {
         this.softAssert = hooks.getSoftAssert();
     }
 
-    @Given("I am on the menu page")
-    public void iAmOnTheMenuPage() {
-        menuPage = new MenuPage(hooks.getDriver());
-    }
-
     @When("I double click drink {string}")
     public void iDoubleClickDrink(String drinkName) {
         List<WebElement> productNameElements = hooks.getDriver()
