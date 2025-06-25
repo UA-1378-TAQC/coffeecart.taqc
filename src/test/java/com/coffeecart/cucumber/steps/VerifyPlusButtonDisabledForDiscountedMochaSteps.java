@@ -27,21 +27,11 @@ public class VerifyPlusButtonDisabledForDiscountedMochaSteps {
         this.softAssert = hooks.getSoftAssert();
     }
 
-    @Given("I am on the menu page")
-    public void iAmOnTheMenuPage() {
-        menuPage = new MenuPage(hooks.getDriver());
-    }
-
     @When("I click on any coffee cup")
     public void iClickOnAnyCoffeeCup() {
         menuPage.clickDrink("Espresso");
     }
 
-    @Then("I verify the cart counter in header is {string}")
-    public void iVerifyCartCounterInHeaderIs(String expected) {
-        int actual = menuPage.getHeader().getTotalNumberItemsFromCartLink();
-        softAssert.assertEquals(actual, Integer.parseInt(expected), "Cart counter in header");
-    }
 
     @And("I verify Lucky Day modal appears")
     public void iVerifyLuckyDayModalAppears() {
